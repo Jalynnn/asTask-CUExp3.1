@@ -1406,6 +1406,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sceneD: {fileID: 0}
+  sceneDirectorObject: {fileID: 0}
   instrManager: {fileID: 0}
 --- !u!114 &954465263
 MonoBehaviour:
@@ -1499,6 +1500,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 1019481329}
+        m_TargetAssemblyTypeName: taskload, Assembly-CSharp
+        m_MethodName: logTLX
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
       - m_Target: {fileID: 954465262}
         m_TargetAssemblyTypeName: FindSM, Assembly-CSharp
         m_MethodName: nextScene
@@ -1509,18 +1522,6 @@ MonoBehaviour:
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: Practice
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: FindSM, Assembly-CSharp
-        m_MethodName: 
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: 
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &954465264
@@ -1703,6 +1704,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7f16c675d67362240ba57fb1ce145789, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1019481330
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1019481327}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6ee22db2e0adcf349aa7b51c310037d0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sceneD: {fileID: 0}
+  sceneDirectorObject: {fileID: 0}
+  instrManager: {fileID: 0}
 --- !u!1 &1046875396 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 2976553939918396891, guid: b776dbf23f5658747abc627ccd5b6f7d,
@@ -2076,6 +2092,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sceneD: {fileID: 0}
+  sceneDirectorObject: {fileID: 0}
   instrManager: {fileID: 0}
 --- !u!114 &2101203887
 MonoBehaviour:
@@ -2128,6 +2145,18 @@ MonoBehaviour:
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: 
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: 
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -2437,7 +2466,7 @@ PrefabInstance:
     - target: {fileID: 1350014315463942123, guid: b776dbf23f5658747abc627ccd5b6f7d,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3670710333481207279, guid: b776dbf23f5658747abc627ccd5b6f7d,
         type: 3}
@@ -2705,6 +2734,10 @@ PrefabInstance:
       insertIndex: 6
       addedObject: {fileID: 1637628572}
     m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 1350014315463942123, guid: b776dbf23f5658747abc627ccd5b6f7d,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1019481330}
     - targetCorrespondingSourceObject: {fileID: 483089532535371909, guid: b776dbf23f5658747abc627ccd5b6f7d,
         type: 3}
       insertIndex: -1

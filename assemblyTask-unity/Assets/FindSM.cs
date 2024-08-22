@@ -6,11 +6,13 @@ using UnityEngine.SceneManagement;
 public class FindSM : MonoBehaviour
 {
     public SceneDirector sceneD;
+    public GameObject sceneDirectorObject;
     public invisInstructions instrManager;
     // Start is called before the first frame update
     void Start()
     {
         sceneD = GameObject.FindWithTag("Manager").GetComponent<SceneDirector>();
+        sceneDirectorObject = GameObject.FindWithTag("Manager");
         GameObject sceneInstructions = GameObject.FindWithTag("SceneInstructions");
         if (sceneInstructions)
         {

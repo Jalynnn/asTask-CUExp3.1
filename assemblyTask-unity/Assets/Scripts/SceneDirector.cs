@@ -30,6 +30,8 @@ public class SceneDirector : MonoBehaviour
     public int participantID;
     public ExperimentType experimentType;
     [HideInInspector] public ExperimentType initialType;
+    [HideInInspector] public int prevMentalTLX;
+    [HideInInspector] public int tlxDifference;
     public enum ExperimentType
     {
         ExpA,

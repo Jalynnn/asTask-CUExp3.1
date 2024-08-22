@@ -10,10 +10,13 @@ public class taskload : MonoBehaviour
     public int scorePhysical;
     public TextMeshPro value;
     public Slider tlx;
+    SceneDirector sceneDir;
+    GameObject sceneDirObj;
     // Start is called before the first frame update
     void Start()
     {
-
+        sceneDirObj = this.GetComponent<FindSM>().sceneDirectorObject;
+        sceneDir = sceneDirObj.GetComponent<SceneDirector>();
     }
 
     // Update is called once per frame
@@ -31,6 +34,24 @@ public class taskload : MonoBehaviour
     public void SavePhysicalTaskLoad()
     {
         scorePhysical = int.Parse(value.text);
+    }
+    public void logTLX()
+    {
+        sceneDirObj = this.GetComponent<FindSM>().sceneDirectorObject;
+        sceneDirObj.GetComponent<ExperimentLog>().AddData("Mental Task Load", scoreMental.ToString());
+        sceneDirObj.GetComponent<ExperimentLog>().AddData("Physical Task Load", scorePhysical.ToString());
+        if (sceneDir.prevMentalTLX == null)
+        {
+            sceneDir.prevMentalTLX = scoreMental;
+        }
+        else
+        {
+            sceneDir.tlxDifference = sceneDir.prevMentalTLX - scoreMental; //if positive value, mental load has increased
+            sceneDir.prevMentalTLX = scoreMental;
+        }
+        // check previous mental score, if null set to this score
+        // calculate difference
+        // set new score
     }
 }
 
