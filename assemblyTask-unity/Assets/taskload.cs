@@ -6,7 +6,8 @@ using TMPro;
 
 public class taskload : MonoBehaviour
 {
-    int n;
+    public int scoreMental;
+    public int scorePhysical;
     public TextMeshPro value;
     public Slider tlx;
     // Start is called before the first frame update
@@ -21,7 +22,15 @@ public class taskload : MonoBehaviour
 
     void Update()
     {
-        value.text = "Selected workload: " + tlx.value;
+
+    }
+    public void SaveMentalTaskLoad()
+    {
+        scoreMental = int.Parse(value.text);
+    }
+    public void SavePhysicalTaskLoad()
+    {
+        scorePhysical = int.Parse(value.text);
     }
 }
 
