@@ -15,10 +15,14 @@ public class taskload : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        StartCoroutine(Wait());
+    }
+    IEnumerator Wait()
+    {
+        yield return new WaitForSeconds(0.5f);
         sceneDirObj = this.GetComponent<FindSM>().sceneDirectorObject;
         sceneDir = sceneDirObj.GetComponent<SceneDirector>();
     }
-
     // Update is called once per frame
 
 

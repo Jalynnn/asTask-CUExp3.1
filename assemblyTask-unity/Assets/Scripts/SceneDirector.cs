@@ -71,35 +71,35 @@ public class SceneDirector : MonoBehaviour
         {
             if (Input.GetKeyDown(KeyCode.A))
             {
-                LoadSceneByName("A_HiIn_LEx");
+                LoadSceneByName("A_LIn_LEx");
             }
             else if (Input.GetKeyDown(KeyCode.B))
             {
-                LoadSceneByName("B_HiIn_LEx");
+                LoadSceneByName("B_LIn_LEx");
             }
             else if (Input.GetKeyDown(KeyCode.C))
             {
-                LoadSceneByName("C_HiIn_LEx");
+                LoadSceneByName("C_LIn_LEx");
             }
             else if (Input.GetKeyDown(KeyCode.D))
             {
-                LoadSceneByName("D_HiIn_LEx");
+                LoadSceneByName("D_LIn_LEx");
             }
             else if (Input.GetKeyDown(KeyCode.E))
             {
-                LoadSceneByName("E_HiIn_LEx");
+                LoadSceneByName("E_LIn_LEx");
             }
             else if (Input.GetKeyDown(KeyCode.F))
             {
-                LoadSceneByName("F_HiIn_LEx");
+                LoadSceneByName("F_LIn_LEx");
             }
             else if (Input.GetKeyDown(KeyCode.G))
             {
-                LoadSceneByName("G_HiIn_LEx");
+                LoadSceneByName("G_LIn_LEx");
             }
             else if (Input.GetKeyDown(KeyCode.H))
             {
-                LoadSceneByName("H_HiIn_LEx");
+                LoadSceneByName("H_LIn_LEx");
             }
         }
         // Right Shift plus Letter loads the Adaptive Scene for that letter with COLOR and the instructions at the bench
