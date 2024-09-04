@@ -8,17 +8,27 @@ public class LoadCondition : MonoBehaviour
 
     public int participantId;
     SceneDirector sceneDirector;
+    public bool testing;
     // Start is called before the first frame update
     void Start()
     {
         sceneDirector = this.GetComponent<FindSM>().sceneD;
-        participantId = sceneDirector.participantID = participantId;
-        conditions = GetConditionFromCSV(false, participantId);
+        if (testing)
+        {
+            participantId = 1;
+        }
+        else
+        {
+            participantId = sceneDirector.participantID;
+        }
+
+        sceneDirector.conditions = GetConditionFromCSV(participantId);
     }
-    public string[] GetConditionFromCSV(bool testing, int participantId)
+    public string[] GetConditionFromCSV(int participantId)
     {
+
         // Load the appropriate CSV file based on the testing flag
-        TextAsset csvFile = testing ? Resources.Load<TextAsset>("Schedule/YokeTest") : Resources.Load<TextAsset>("Schedule/Yoke");
+        TextAsset csvFile = Resources.Load<TextAsset>("Schedule/Conditions");
 
         // Split the CSV file into lines
         string[] lines = csvFile.text.Split('\n');
@@ -27,30 +37,20 @@ public class LoadCondition : MonoBehaviour
         foreach (string line in lines)
         {
             // Split the line into conditions
-            string[] conditions = line.Split(',');
+            string[] conditions = line.Split('_');
 
             // Check if the first value matches the participantId
-            if (conditions.Length > 0 && int.TryParse(conditions[0], out int id) && id == participantId)
+            if (conditions.Length > 0 && int.TryParse(conditions[0], out int id) && id == participantId && !testing)
             {
-                // Return the entire row as a string array
+                Debug.Log(conditions);
                 return conditions;
+
             }
+
         }
 
         // Return null if no matching row is found
         return null;
     }
 
-    void LoadNextCondition()
-    {
-        sceneDirector.LoadSceneByName(conditions[sceneDirector.shapeNumber]);
-    }
-    // Update is called once per frame
-    void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.N))
-        {
-            sceneDirector.LoadSceneByName(conditions[sceneDirector.shapeNumber]);
-        }
-    }
 }

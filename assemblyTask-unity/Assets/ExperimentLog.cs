@@ -93,7 +93,8 @@ public class ExperimentLog : MonoBehaviour
         }
 
         manager.participantID = participantNumber;
-        //Debug.Log(manager.schedule[0]);
+        manager.conditions  = manager.GetConditionFromCSV(participantNumber);
+        Debug.Log(manager.conditions);
         filePath = filePath + "/Participant" + participantNumber.ToString() + "_" + DateTime.Now.ToString("yyyyMMdd_HHmmssf") + ".csv";
         filePathW = temp + "/WideParticipant" + participantNumber.ToString() + "_" + DateTime.Now.ToString("yyyyMMdd_HHmm") + ".csv";
         using (writer = File.CreateText(filePath))
