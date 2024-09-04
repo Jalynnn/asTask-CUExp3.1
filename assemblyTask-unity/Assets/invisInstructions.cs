@@ -232,7 +232,7 @@ public class invisInstructions : MonoBehaviour
         {
             StartCoroutine(ActivateNextArrow());
         }
-        
+
     }
     IEnumerator ActivateRepeatArrow()
     {
@@ -279,12 +279,13 @@ public class invisInstructions : MonoBehaviour
         }
         else
         {
-            instructionPanel.text = "You have completed the instructions!";
+            // instructionPanel.text = "You have completed the instructions!";
+            instructionPanel.gameObject.SetActive(false);
             dataLog("Trial", "complete");
             WideDataLog();
             toggleHands(false);
             button.SetActive(true);
-            //StartCoroutine(disableShape());
+
         }
     }
 
@@ -311,8 +312,14 @@ public class invisInstructions : MonoBehaviour
     void setText()
     {
         tempText = instructionTexts[currentStep];
+        bool removeScaffold = false;
+
+        if (sceneDirector.tlxDifference >=2){
+            removeScaffold = true; //need to remove 2 scaffold
+        }
+       
         //Debug.Log(tempText + currentStep);
-        if (sceneDirector.trialNumber + currentStep >= 6)
+        if (sceneDirector.trialNumber + currentStep >= 6 && removeScaffold)
         {
             int tempStep = currentStep + 1;
             instructionPanel.text = "Please perform Step " + tempStep;

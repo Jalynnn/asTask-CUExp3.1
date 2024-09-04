@@ -50,7 +50,7 @@ public class taskload : MonoBehaviour
         }
         else
         {
-            sceneDir.tlxDifference = sceneDir.prevMentalTLX - scoreMental; //if positive value, mental load has increased
+            sceneDir.tlxDifference = sceneDir.prevMentalTLX - scoreMental; //if positive value, mental load has decreased
             sceneDir.prevMentalTLX = scoreMental;
         }
         // check previous mental score, if null set to this score
