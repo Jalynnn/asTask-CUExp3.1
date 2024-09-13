@@ -156,7 +156,7 @@ public class invisiBuild : MonoBehaviour
                 // button presses
                 InputDevices.GetDevicesWithCharacteristics(InputDeviceCharacteristics.Left, leftHandDevices);
                 InputDevices.GetDevicesWithCharacteristics(InputDeviceCharacteristics.Right, rightHandDevices);
-                Debug.Log("Correct:" + correctPlacement + "Type:" + errortype);
+//                Debug.Log("Correct:" + correctPlacement + "Type:" + errortype);
 
                 bool rightTrigger = false;
                 bool leftTrigger = false;

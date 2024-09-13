@@ -210,7 +210,15 @@ PrefabInstance:
     - {fileID: 4409195043563073474, guid: 29bccb021597e414b8d4000b3a67e27b, type: 3}
     - {fileID: 1832183676099524273, guid: 29bccb021597e414b8d4000b3a67e27b, type: 3}
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 7645777717553113212, guid: 29bccb021597e414b8d4000b3a67e27b,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 0}
+    - targetCorrespondingSourceObject: {fileID: 7645777716691930949, guid: 29bccb021597e414b8d4000b3a67e27b,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 0}
   m_SourcePrefab: {fileID: 100100000, guid: 29bccb021597e414b8d4000b3a67e27b, type: 3}
 --- !u!1 &238970096 stripped
 GameObject:
@@ -2575,6 +2583,11 @@ PrefabInstance:
       propertyPath: DebugLog
       value: 
       objectReference: {fileID: 238970096}
+    - target: {fileID: 1348949931793526915, guid: c65a92bbe6f45954fa115c51f76294f0,
+        type: 3}
+      propertyPath: toggleLog
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3928196741364219697, guid: c65a92bbe6f45954fa115c51f76294f0,
         type: 3}
       propertyPath: m_Name

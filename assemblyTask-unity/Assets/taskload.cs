@@ -6,12 +6,13 @@ using TMPro;
 
 public class taskload : MonoBehaviour
 {
-    public int scoreMental;
-    public int scorePhysical;
+     int scoreMental;
+     int scorePhysical;
     public TextMeshPro value;
     public Slider tlx;
     SceneDirector sceneDir;
     GameObject sceneDirObj;
+     int scoreJOL;
     // Start is called before the first frame update
     void Start()
     {
@@ -39,18 +40,26 @@ public class taskload : MonoBehaviour
     {
         scorePhysical = int.Parse(value.text);
     }
+    public void SaveJOL()
+    {
+        scoreJOL = int.Parse(value.text);
+    }
+    
     public void logTLX()
     {
         sceneDirObj = this.GetComponent<FindSM>().sceneDirectorObject;
-        sceneDirObj.GetComponent<ExperimentLog>().AddData("Mental Task Load", scoreMental.ToString());
-        sceneDirObj.GetComponent<ExperimentLog>().AddData("Physical Task Load", scorePhysical.ToString());
-        if (sceneDir.prevMentalTLX == null)
+        sceneDirObj.GetComponent<ExperimentLog>().AddData("M_TLX", scoreMental.ToString());
+        sceneDirObj.GetComponent<ExperimentLog>().AddData("P_TLX", scorePhysical.ToString());
+        sceneDirObj.GetComponent<ExperimentLog>().AddData("JOL", scoreJOL.ToString());
+        if (sceneDir.trialNumber ==1)
         {
+            sceneDir.tlxDifference = 0;
             sceneDir.prevMentalTLX = scoreMental;
         }
         else
         {
-            sceneDir.tlxDifference = sceneDir.prevMentalTLX - scoreMental; //if positive value, mental load has decreased
+            sceneDir.tlxDifference = sceneDir.prevMentalTLX - scoreMental; // positive values are decrease in load, negative are increase
+            sceneDirObj.GetComponent<ExperimentLog>().AddData("Mental Diff", sceneDir.tlxDifference.ToString());
             sceneDir.prevMentalTLX = scoreMental;
         }
         // check previous mental score, if null set to this score

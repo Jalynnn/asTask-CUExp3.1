@@ -33,6 +33,7 @@ public class SceneDirector : MonoBehaviour
     [HideInInspector] public ExperimentType initialType;
     [HideInInspector] public int prevMentalTLX;
     [HideInInspector] public int tlxDifference;
+    public bool[] StepDisplay = new bool[5] { true, true, true, true, true };
     public enum ExperimentType
     {
         ExpA,
@@ -89,6 +90,7 @@ public class SceneDirector : MonoBehaviour
     }
     public void LoadScenesBasedOnConditions()
     {
+        StepDisplay = new bool[5] { true, true, true, true, true };
         if (shapeNumber < 1 || shapeNumber > conditions.Length)
         {
             Debug.LogWarning("Invalid shapeNumber: " + shapeNumber);
@@ -316,7 +318,8 @@ public class SceneDirector : MonoBehaviour
                 LoadSceneByName("H_LIn_HiEx");
             }
         }
-        if (Input.GetKeyDown(KeyCode.Space)){
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
             LoadScenesBasedOnConditions();
         }
 

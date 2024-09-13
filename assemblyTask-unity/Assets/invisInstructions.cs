@@ -22,7 +22,7 @@ public class invisInstructions : MonoBehaviour
     public GameObject builtShape;
     [HideInInspector] public GameObject[] hands;
     public bool isAdaptive;
-    public GameObject button;
+    public GameObject tlx;
     string tempText;
     public bool instructionsAreSeperated = false;
     [HideInInspector] public GameObject cross;
@@ -32,6 +32,7 @@ public class invisInstructions : MonoBehaviour
     public List<GameObject> builtBars;
     GameObject repeatArrow;
     GameObject nextArrow;
+    public GameObject endButton;
 
     // Start is called before the first frame update
     void Start()
@@ -47,6 +48,7 @@ public class invisInstructions : MonoBehaviour
         nextArrow = GameObject.FindWithTag("nextArrow");
         repeatArrow.SetActive(false);
         nextArrow.SetActive(false);
+        setScaffold();
         if (instructionsAreSeperated) // This causes the instructions to be set to high extraneous load. In this case it decreases font size and changes the location to be offset. Also changes font to different asset with poor contrast. This is done to make the instructions harder to read.
         {
             // Gets the two Quads from the stepPanel and sets the first one to be inactive and the second one to be active. This is done to change the background of the wordy instructions.
@@ -68,6 +70,7 @@ public class invisInstructions : MonoBehaviour
             //instructionPanel.font = badFont;
 
         }
+
 
         toggleHands(false);
 
@@ -284,7 +287,12 @@ public class invisInstructions : MonoBehaviour
             dataLog("Trial", "complete");
             WideDataLog();
             toggleHands(false);
-            button.SetActive(true);
+            if (sceneDirector.trialNumber == 8)
+            {
+                endButton.SetActive(true);
+            }
+            else
+                tlx.SetActive(true);
 
         }
     }
@@ -312,21 +320,58 @@ public class invisInstructions : MonoBehaviour
     void setText()
     {
         tempText = instructionTexts[currentStep];
-        bool removeScaffold = false;
-
-        if (sceneDirector.tlxDifference >=2){
-            removeScaffold = true; //need to remove 2 scaffold
-        }
-       
-        //Debug.Log(tempText + currentStep);
-        if (sceneDirector.trialNumber + currentStep >= 6 && removeScaffold)
+        Debug.Log("Current Step: " + sceneDirector.StepDisplay[currentStep]);
+        if (!sceneDirector.StepDisplay[currentStep]) // in the third cycle we start removing scaffold, not before. 
         {
+            Debug.Log("Trial Number: " + sceneDirector.trialNumber + " Current Step: " + currentStep + sceneDirector.StepDisplay);
             int tempStep = currentStep + 1;
             instructionPanel.text = "Please perform Step " + tempStep;
 
         }
         else
             SetCurrentStepText();
+    }
+    public void setScaffold()
+    {
+        Debug.Log("TLX" + sceneDirector.tlxDifference);
+        if (sceneDirector.trialNumber == 2)
+        {
+            sceneDirector.StepDisplay[4] = false;
+        }
+        else if (sceneDirector.trialNumber >= 3)
+        {
+            if (sceneDirector.tlxDifference > 2)
+            {
+                int s = FindFirstFalseInStepDisplay();
+                if (s >= 2)
+                {
+                    sceneDirector.StepDisplay[s - 1] = false;
+                    sceneDirector.StepDisplay[s - 2] = false;
+                }
+            }
+
+            else if (sceneDirector.tlxDifference <= 2 && sceneDirector.tlxDifference >= -2)
+            {
+                int s = FindFirstFalseInStepDisplay();
+                if (s >= 1)
+                {
+                    sceneDirector.StepDisplay[s - 1] = false;
+
+                }
+            }
+        }
+    }
+    public int FindFirstFalseInStepDisplay()
+    {
+        for (int i = 0; i < sceneDirector.StepDisplay.Length; i++)
+        {
+            if (!sceneDirector.StepDisplay[i])
+            {
+                Debug.Log("First False: " + i);
+                return i;
+            }
+        }
+        return -1; // Return -1 if no false value is found
     }
     public void SetCurrentStepText()
     {
