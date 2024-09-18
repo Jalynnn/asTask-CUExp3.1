@@ -34,6 +34,7 @@ public class SceneDirector : MonoBehaviour
     [HideInInspector] public int prevMentalTLX;
     [HideInInspector] public int tlxDifference;
     public bool[] StepDisplay = new bool[5] { true, true, true, true, true };
+    [HideInInspector] public int scaffoldsRemoved = 0;
     public enum ExperimentType
     {
         ExpA,

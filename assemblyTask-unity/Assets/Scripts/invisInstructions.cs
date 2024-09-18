@@ -347,6 +347,7 @@ public class invisInstructions : MonoBehaviour
                 {
                     sceneDirector.StepDisplay[s - 1] = false;
                     sceneDirector.StepDisplay[s - 2] = false;
+                    sceneDirector.scaffoldsRemoved += 2;
                 }
             }
 
@@ -356,6 +357,7 @@ public class invisInstructions : MonoBehaviour
                 if (s >= 1)
                 {
                     sceneDirector.StepDisplay[s - 1] = false;
+                    sceneDirector.scaffoldsRemoved ++;
 
                 }
             }

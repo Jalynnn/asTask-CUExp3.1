@@ -1730,11 +1730,12 @@ MonoBehaviour:
   - {fileID: 2141832735}
   - {fileID: 273286243}
   isAdaptive: 1
-  button: {fileID: 547383365}
+  tlx: {fileID: 547383365}
   instructionsAreSeperated: 0
   cross: {fileID: 0}
   fadingMaterial: {fileID: 0}
   builtBars: []
+  endButton: {fileID: 0}
 --- !u!1001 &5897773746125249795
 PrefabInstance:
   m_ObjectHideFlags: 0

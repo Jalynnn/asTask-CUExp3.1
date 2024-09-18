@@ -508,14 +508,6 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 0}
-    - targetCorrespondingSourceObject: {fileID: 7645777717553113212, guid: 29bccb021597e414b8d4000b3a67e27b,
-        type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 0}
-    - targetCorrespondingSourceObject: {fileID: 7645777716691930949, guid: 29bccb021597e414b8d4000b3a67e27b,
-        type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 0}
   m_SourcePrefab: {fileID: 100100000, guid: 29bccb021597e414b8d4000b3a67e27b, type: 3}
 --- !u!1 &58756182 stripped
 GameObject:
@@ -535,6 +527,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6ee22db2e0adcf349aa7b51c310037d0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &58756184 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4990985746687824457, guid: 29bccb021597e414b8d4000b3a67e27b,
+    type: 3}
+  m_PrefabInstance: {fileID: 58756181}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &535511728
 GameObject:
   m_ObjectHideFlags: 0
@@ -2272,11 +2270,12 @@ MonoBehaviour:
   - {fileID: 581672430}
   - {fileID: 581672429}
   isAdaptive: 1
-  button: {fileID: 547383365}
+  tlx: {fileID: 58756184}
   instructionsAreSeperated: 0
   cross: {fileID: 0}
   fadingMaterial: {fileID: 2100000, guid: 722a88747d560ec4caeb43f2bdd4575a, type: 2}
   builtBars: []
+  endButton: {fileID: 547383365}
 --- !u!1 &3954116125970588551 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 7065610097435842662, guid: 29bccb021597e414b8d4000b3a67e27b,

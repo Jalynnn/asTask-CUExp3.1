@@ -18,5 +18,6 @@ public class TestingSkip : MonoBehaviour
         {
             tempObj.SetActive(true);
         }
+       
     }
 }
