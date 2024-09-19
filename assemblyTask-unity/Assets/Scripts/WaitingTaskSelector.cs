@@ -23,7 +23,8 @@ public class WaitingTaskSelector : MonoBehaviour
     void Start()
     {
         if (managerObject == null) managerObject = GameObject.FindWithTag("Manager");
-        managerObject.GetComponent<ExperimentLog>().AddData("Scaffolds removed", managerObject.GetComponent<SceneDirector>().scaffoldsRemoved.ToString());//log the amount of scaffold steps that were removed
+        managerObject.GetComponent<ExperimentLog>().AddData("Scaffolds removed", managerObject.GetComponent<SceneDirector>().scaffoldsRemoved.ToString());
+        managerObject.GetComponent<SceneDirector>().scaffoldsRemoved = 0;//log the amount of scaffold steps that were removed
         if (task == TaskType.Normal) //Take normal instructions and start 90s timer for bouncing ball
         {
             instructionText.text = "Please wait for 90 seconds. You will then need to build the shape again with no instructions. Please count how many times the ball bounces and tell the experimenter once it stops.";
