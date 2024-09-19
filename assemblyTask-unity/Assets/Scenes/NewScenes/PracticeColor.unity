@@ -266,6 +266,11 @@ PrefabInstance:
       propertyPath: isColored
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 992231072271933648, guid: 29bccb021597e414b8d4000b3a67e27b,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1451631397521219215, guid: 29bccb021597e414b8d4000b3a67e27b,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
@@ -444,6 +449,11 @@ PrefabInstance:
     - target: {fileID: 4889592234236265117, guid: 29bccb021597e414b8d4000b3a67e27b,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[2].m_Arguments.m_BoolArgument
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4990985746687824457, guid: 29bccb021597e414b8d4000b3a67e27b,
+        type: 3}
+      propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5440020736791744248, guid: 29bccb021597e414b8d4000b3a67e27b,
@@ -724,6 +734,22 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 0}
     - targetCorrespondingSourceObject: {fileID: 4285429961050902583, guid: 29bccb021597e414b8d4000b3a67e27b,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 0}
+    - targetCorrespondingSourceObject: {fileID: 5858051267071112487, guid: 29bccb021597e414b8d4000b3a67e27b,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 0}
+    - targetCorrespondingSourceObject: {fileID: 8059181469618127279, guid: 29bccb021597e414b8d4000b3a67e27b,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 0}
+    - targetCorrespondingSourceObject: {fileID: 9129189796828549241, guid: 29bccb021597e414b8d4000b3a67e27b,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 0}
+    - targetCorrespondingSourceObject: {fileID: 1019065011214869387, guid: 29bccb021597e414b8d4000b3a67e27b,
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 0}
