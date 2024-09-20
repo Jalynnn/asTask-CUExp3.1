@@ -32,7 +32,7 @@ public class WaitingTaskSelector : MonoBehaviour
         }
         else
         {
-            instructionText.text = "Please take apart this shape before you. Put them in the transparent cube on the side. Try to get as many bars as possible. You have 90 seconds. You will then need to build the shape again with no instructions.";
+            instructionText.text = "Please take apart all shapes before you. Put them in the transparent cube on the side. Try to get as many bars as possible. You have 90 seconds. You will then need to build the shape again with no instructions.";
             StartCoroutine(LoadSceneAfterDelay());
         }
         foreach (GameObject obj in normalObjects) // This is used to toggle the objects that are used in the normal task.

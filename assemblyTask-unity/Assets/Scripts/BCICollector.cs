@@ -9,13 +9,21 @@ public class BCICollector : MonoBehaviour
     public GameObject bciMenu;
     public GameObject instructions;
     public GameObject[] bars;
-    Transform[] barTransforms;
+    public Transform[] barTransforms;
     void Start()
     {
         barTransforms = new Transform[bars.Length];
         for (int i = 0; i < bars.Length; i++)
         {
-            barTransforms[i] = bars[i].transform;
+            GameObject newBar = new GameObject("BarTransform" + i);
+
+            // Copy the position, rotation, and scale from the original bar
+            newBar.transform.position = bars[i].transform.position;
+            newBar.transform.rotation = bars[i].transform.rotation;
+            newBar.transform.localScale = bars[i].transform.localScale;
+
+            // Store the new Transform in the barTransforms array
+            barTransforms[i] = newBar.transform;
         }
     }
 
@@ -26,8 +34,8 @@ public class BCICollector : MonoBehaviour
         //{
         //    Debug.Log("All bars are in");
         //    bciMenu.SetActive(true);
-       //     instructions.SetActive(false);
-       // }
+        //     instructions.SetActive(false);
+        // }
     }
     void OnTriggerEnter(Collider other)
     {
@@ -35,7 +43,7 @@ public class BCICollector : MonoBehaviour
         {
             barCount++;
             Debug.Log(barCount);
-            duplicateBars();
+            if (barCount % 12 == 0) duplicateBars();
         }
     }
     void OnTriggerExit(Collider other)
@@ -47,12 +55,13 @@ public class BCICollector : MonoBehaviour
     }
     void duplicateBars()
     {
-        int randomIndexBar = Random.Range(0, bars.Length);
-        GameObject selectedBar = bars[randomIndexBar];
-        int randomIndexPos = Random.Range(0, barTransforms.Length);
-        Transform selectedPos = barTransforms[randomIndexPos];
-
-        Instantiate(selectedBar, selectedPos.position, selectedPos.rotation);
+        
+        foreach (Transform barTransform in barTransforms)
+        {
+            int randomIndexBar = Random.Range(0, bars.Length);
+            GameObject selectedBar = bars[randomIndexBar];
+            Instantiate(selectedBar, barTransform.position, barTransform.rotation);
+        }
 
     }
 }
