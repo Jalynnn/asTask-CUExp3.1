@@ -27,12 +27,13 @@ public class WaitingTaskSelector : MonoBehaviour
         managerObject.GetComponent<SceneDirector>().scaffoldsRemoved = 0;//log the amount of scaffold steps that were removed
         if (task == TaskType.Normal) //Take normal instructions and start 90s timer for bouncing ball
         {
-            instructionText.text = "Please wait for 90 seconds. You will then need to build the shape again with no instructions. Please count how many times the ball bounces and tell the experimenter once it stops.";
+            instructionText.text = "Please wait for 90 seconds. You will then need to build the shape again with no instructions. Please count the number of bounces the ball makes in the meantime.";
             StartCoroutine(LoadSceneAfterDelay());
         }
         else
         {
-            instructionText.text = "Please take apart this shape before you. Put them in the transparent cube on the side.";
+            instructionText.text = "Please take apart this shape before you. Put them in the transparent cube on the side. Try to get as many bars as possible. You have 90 seconds. You will then need to build the shape again with no instructions.";
+            StartCoroutine(LoadSceneAfterDelay());
         }
         foreach (GameObject obj in normalObjects) // This is used to toggle the objects that are used in the normal task.
         {

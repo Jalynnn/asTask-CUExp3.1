@@ -70,8 +70,6 @@ public class invisInstructions : MonoBehaviour
             //instructionPanel.font = badFont;
 
         }
-
-
         toggleHands(false);
 
         if (sceneDirector.trialNumber == 6 || sceneDirector.trialNumber == 8)
@@ -338,8 +336,10 @@ public class invisInstructions : MonoBehaviour
         {
             sceneDirector.StepDisplay[4] = false;
         }
+        
         else if (sceneDirector.trialNumber >= 3)
         {
+
             if (sceneDirector.tlxDifference > 2)
             {
                 int s = FindFirstFalseInStepDisplay();
@@ -351,7 +351,7 @@ public class invisInstructions : MonoBehaviour
                 }
             }
 
-            else if (sceneDirector.tlxDifference <= 2 && sceneDirector.tlxDifference >= -2)
+            else if (sceneDirector.tlxDifference <= 2 && sceneDirector.tlxDifference >= -2 && sceneDirector.prevMentalTLX <= 19)
             {
                 int s = FindFirstFalseInStepDisplay();
                 if (s >= 1)

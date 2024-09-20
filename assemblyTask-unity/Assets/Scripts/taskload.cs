@@ -51,7 +51,7 @@ public class taskload : MonoBehaviour
         sceneDirObj.GetComponent<ExperimentLog>().AddData("M_TLX", scoreMental.ToString());
         sceneDirObj.GetComponent<ExperimentLog>().AddData("P_TLX", scorePhysical.ToString());
         sceneDirObj.GetComponent<ExperimentLog>().AddData("JOL", scoreJOL.ToString());
-        if (sceneDir.trialNumber ==1)
+        if (sceneDir.trialNumber == 1)
         {
             sceneDir.tlxDifference = 0;
             sceneDir.prevMentalTLX = scoreMental;
