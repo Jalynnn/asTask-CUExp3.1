@@ -10,6 +10,7 @@ public class BCICollector : MonoBehaviour
     public GameObject instructions;
     public GameObject[] bars;
     public Transform[] barTransforms;
+    bool temp = true;
     void Start()
     {
         barTransforms = new Transform[bars.Length];
@@ -43,25 +44,17 @@ public class BCICollector : MonoBehaviour
         {
             barCount++;
             Debug.Log(barCount);
-            if (barCount % 12 == 0) duplicateBars();
-        }
-    }
-    void OnTriggerExit(Collider other)
-    {
-        if (other.gameObject.tag == "Builder")
-        {
-            barCount--;
+            if (barCount % 12 == 0 ) duplicateBars();
         }
     }
     void duplicateBars()
     {
-        
         foreach (Transform barTransform in barTransforms)
         {
             int randomIndexBar = Random.Range(0, bars.Length);
             GameObject selectedBar = bars[randomIndexBar];
             Instantiate(selectedBar, barTransform.position, barTransform.rotation);
         }
-
     }
+
 }
