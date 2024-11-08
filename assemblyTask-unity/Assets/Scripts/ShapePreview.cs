@@ -48,7 +48,7 @@ public class ShapePreview : MonoBehaviour
     void OnEnable()
     {
         if (isPreview)
-            StartCoroutine(disappear());
+            StartCoroutine(disappear(0f));
     }
 
     // Update is called once per frame
@@ -99,9 +99,9 @@ public class ShapePreview : MonoBehaviour
             SetPropCheckColorToNull(child);
         }
     }
-    IEnumerator disappear()
+    IEnumerator disappear(float time)
     {
-        yield return new WaitForSeconds(10f);
+        yield return new WaitForSeconds(time);
         this.gameObject.transform.parent.gameObject.SetActive(false);//turns off the grandparent object
 
     }
