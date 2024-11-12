@@ -48,7 +48,7 @@ public class invisInstructions : MonoBehaviour
         nextArrow = GameObject.FindWithTag("nextArrow");
         repeatArrow.SetActive(false);
         nextArrow.SetActive(false);
-        setScaffold();
+
         if (instructionsAreSeperated) // This causes the instructions to be set to high extraneous load. In this case it decreases font size and changes the location to be offset. Also changes font to different asset with poor contrast. This is done to make the instructions harder to read.
         {
             // Gets the two Quads from the stepPanel and sets the first one to be inactive and the second one to be active. This is done to change the background of the wordy instructions.
@@ -91,7 +91,7 @@ public class invisInstructions : MonoBehaviour
                 bar.SetActive(true);
             }
         }
-
+        setScaffold();
         if (sceneDirector.trialNumber == 8)
         {
             DisableMeshRenderersRecursive(builtShape.transform); // hides shape to be built in transfer trial
@@ -336,7 +336,7 @@ public class invisInstructions : MonoBehaviour
         {
             sceneDirector.StepDisplay[4] = false;
         }
-        
+
         else if (sceneDirector.trialNumber >= 3)
         {
 
@@ -357,7 +357,7 @@ public class invisInstructions : MonoBehaviour
                 if (s >= 1)
                 {
                     sceneDirector.StepDisplay[s - 1] = false;
-                    sceneDirector.scaffoldsRemoved ++;
+                    sceneDirector.scaffoldsRemoved++;
 
                 }
             }

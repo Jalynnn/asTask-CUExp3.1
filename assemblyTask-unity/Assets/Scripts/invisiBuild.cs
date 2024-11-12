@@ -237,7 +237,6 @@ public class invisiBuild : MonoBehaviour
 
     IEnumerator build()
     {
-
         this.gameObject.GetComponent<XROffsetGrabInteractable>().interactionLayerMask = 0;
         // when a bar is placed, it goes back to the original position and a new bar is created instead that cannot be picked up again.
         GameObject newBar = Instantiate(this.gameObject, lastTouchedBar.transform.position, lastTouchedBar.transform.rotation);
@@ -271,9 +270,7 @@ public class invisiBuild : MonoBehaviour
             manager.GetComponent<ExperimentLog>().AddData(this.gameObject.name, "Correct placement", inst.currentStep.ToString());
             inst.nextStep();
             inst.builtBars.Append(newBar.gameObject);
-
         }
-
         StartCoroutine("resetCanBeBuilt");
     }
     public void FadeOutPlaced(GameObject bar)
@@ -353,7 +350,7 @@ public class invisiBuild : MonoBehaviour
             inst.mistakes++;
             inst.SetTempText();
             inst.builtShape.SetActive(true);
-            inst.builtShape.transform.GetChild(1).gameObject.SetActive(true);
+            //inst.builtShape.transform.GetChild(1).gameObject.SetActive(true);
             inst.stepPanel.SetActive(false);
             manager.GetComponent<ExperimentLog>().AddData(this.gameObject.name, "Error", inst.currentStep.ToString(), errortype);
             inst.FadeInCorrectBar();
@@ -370,7 +367,7 @@ public class invisiBuild : MonoBehaviour
             inst.mistakes++;
             inst.SetTempText();
             inst.builtShape.SetActive(true);
-            inst.builtShape.transform.GetChild(1).gameObject.SetActive(true);
+           //inst.builtShape.transform.GetChild(1).gameObject.SetActive(true);
             inst.stepPanel.SetActive(false);
             manager.GetComponent<ExperimentLog>().AddData(this.gameObject.name, "Error", inst.currentStep.ToString(), errortype);
             if (!crossSpawned)

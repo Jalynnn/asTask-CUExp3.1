@@ -211,6 +211,11 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6910204350674015626, guid: 29bccb021597e414b8d4000b3a67e27b,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 1622556446396220707, guid: 29bccb021597e414b8d4000b3a67e27b, type: 3}
     m_RemovedGameObjects:
@@ -483,14 +488,6 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 0}
-    - targetCorrespondingSourceObject: {fileID: 7645777717553113212, guid: 29bccb021597e414b8d4000b3a67e27b,
-        type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 0}
-    - targetCorrespondingSourceObject: {fileID: 7645777716691930949, guid: 29bccb021597e414b8d4000b3a67e27b,
-        type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 0}
   m_SourcePrefab: {fileID: 100100000, guid: 29bccb021597e414b8d4000b3a67e27b, type: 3}
 --- !u!1 &58756182 stripped
 GameObject:
@@ -554,12 +551,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &547383365 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 3482215139603773003, guid: f8b05903c4fca8c4a84a06c1d80bedbd,
-    type: 3}
-  m_PrefabInstance: {fileID: 7761286666454326376}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &581672427
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1368,11 +1359,12 @@ MonoBehaviour:
   - {fileID: 581672430}
   - {fileID: 581672429}
   isAdaptive: 1
-  button: {fileID: 547383365}
+  tlx: {fileID: 0}
   instructionsAreSeperated: 1
   cross: {fileID: 0}
   fadingMaterial: {fileID: 0}
   builtBars: []
+  endButton: {fileID: 0}
 --- !u!1 &3954116125970588551 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 7065610097435842662, guid: 29bccb021597e414b8d4000b3a67e27b,
