@@ -29,13 +29,19 @@ public class SceneDirector : MonoBehaviour
     public int stepCounter = 0;
     public int participantID;
     public ExperimentType experimentType;
+    public string[] conditions;
     [HideInInspector] public ExperimentType initialType;
+    [HideInInspector] public int prevMentalTLX;
+    [HideInInspector] public int tlxDifference;
+    public bool[] StepDisplay = new bool[5] { true, true, true, true, true };
+    [HideInInspector] public int scaffoldsRemoved = 0;
     public enum ExperimentType
     {
         ExpA,
         ExpB,
         Usability
     }
+
     private void Awake()
     {
 
@@ -55,6 +61,112 @@ public class SceneDirector : MonoBehaviour
         expLog = instance.GetComponent<ExperimentLog>();
         participantID = expLog.participantNumber;
         initialType = experimentType;
+        //conditions = GetConditionFromCSV(participantID);
+    }
+    public string[] GetConditionFromCSV(int participantId)
+    {
+        // Load the appropriate CSV file based on the testing flag
+        TextAsset csvFile = Resources.Load<TextAsset>("Schedule/Conditions");
+
+        // Split the CSV file into lines
+        string[] lines = csvFile.text.Split('\n');
+
+        // Iterate through each line
+        foreach (string line in lines)
+        {
+            // Split the line into conditions
+            string[] conditions = line.Split('_');
+
+            // Check if the first value matches the participantId
+            if (conditions.Length > 0 && int.TryParse(conditions[0], out int id) && id == participantId)
+            {
+                Debug.Log(conditions);
+                return conditions;
+            }
+
+        }
+
+        // Return null if no matching row is found
+        return null;
+    }
+    public void LoadScenesBasedOnConditions()
+    {
+        StepDisplay = new bool[5] { true, true, true, true, true };
+        if (shapeNumber < 1 || shapeNumber > conditions.Length)
+        {
+            Debug.LogWarning("Invalid shapeNumber: " + shapeNumber);
+            return;
+        }
+
+        string condition = conditions[shapeNumber];
+
+
+        switch (shapeNumber)
+        {
+            case 1:
+                if (condition.ToLower() == "li")
+                {
+                    SceneManager.LoadScene("A_LIn_LEx");
+                }
+                else if (condition.ToLower() == "hi")
+                {
+                    SceneManager.LoadScene("A_HiIn_LEx");
+                }
+                else
+                {
+                    Debug.LogWarning("Unknown condition for shape 1: " + condition);
+                }
+                break;
+
+            case 2:
+                if (condition.ToLower() == "li")
+                {
+                    SceneManager.LoadScene("B_LIn_LEx");
+                }
+                else if (condition.ToLower() == "hi")
+                {
+                    SceneManager.LoadScene("B_HiIn_LEx");
+                }
+                else
+                {
+                    Debug.LogWarning("Unknown condition for shape 2: " + condition);
+                }
+                break;
+
+            case 3:
+                if (condition.ToLower() == "li")
+                {
+                    SceneManager.LoadScene("C_LIn_LEx");
+                }
+                else if (condition.ToLower() == "hi")
+                {
+                    SceneManager.LoadScene("C_HiIn_LEx");
+                }
+                else
+                {
+                    Debug.LogWarning("Unknown condition for shape 3: " + condition);
+                }
+                break;
+
+            case 4:
+                if (condition.ToLower() == "li")
+                {
+                    SceneManager.LoadScene("D_LIn_LEx");
+                }
+                else if (condition.ToLower() == "hi")
+                {
+                    SceneManager.LoadScene("D_HiIn_LEx");
+                }
+                else
+                {
+                    Debug.LogWarning("Unknown condition for shape 4: " + condition);
+                }
+                break;
+
+            default:
+                Debug.LogWarning("Invalid shape number: " + shapeNumber);
+                break;
+        }
     }
 
     public void resetType()
@@ -63,155 +175,155 @@ public class SceneDirector : MonoBehaviour
     }
     private void Update()
     {
-        //Left Shift plus Letter loads the Adaptive Scene for that letter with NO Color and the instructions at the bench
+
         if (Input.GetKey(KeyCode.Alpha2))
         {
             if (Input.GetKeyDown(KeyCode.A))
             {
-                LoadSceneByName("A_A2_AT");
+                LoadSceneByName("A_LIn_LEx");
             }
             else if (Input.GetKeyDown(KeyCode.B))
             {
-                LoadSceneByName("B_A2_AT");
+                LoadSceneByName("B_LIn_LEx");
             }
             else if (Input.GetKeyDown(KeyCode.C))
             {
-                LoadSceneByName("C_A2_AT");
+                LoadSceneByName("C_LIn_LEx");
             }
             else if (Input.GetKeyDown(KeyCode.D))
             {
-                LoadSceneByName("D_A2_AT");
+                LoadSceneByName("D_LIn_LEx");
             }
             else if (Input.GetKeyDown(KeyCode.E))
             {
-                LoadSceneByName("E_A2_AT");
+                LoadSceneByName("E_LIn_LEx");
             }
             else if (Input.GetKeyDown(KeyCode.F))
             {
-                LoadSceneByName("F_A2_AT");
+                LoadSceneByName("F_LIn_LEx");
             }
             else if (Input.GetKeyDown(KeyCode.G))
             {
-                LoadSceneByName("G_A2_AT");
+                LoadSceneByName("G_LIn_LEx");
             }
             else if (Input.GetKeyDown(KeyCode.H))
             {
-                LoadSceneByName("H_A2_AT");
+                LoadSceneByName("H_LIn_LEx");
             }
         }
-        // Right Shift plus Letter loads the Adaptive Scene for that letter with COLOR and the instructions at the bench
+
         if (Input.GetKey(KeyCode.Alpha3))
         {
             if (Input.GetKeyDown(KeyCode.A))
             {
-                LoadSceneByName("A_A3_AT");
+                LoadSceneByName("A_HiIn_Lex");
             }
             else if (Input.GetKeyDown(KeyCode.B))
             {
-                LoadSceneByName("B_A3_AT");
+                LoadSceneByName("B_HiIn_Lex");
             }
             else if (Input.GetKeyDown(KeyCode.C))
             {
-                LoadSceneByName("C_A3_AT");
+                LoadSceneByName("C_HiIn_Lex");
             }
             else if (Input.GetKeyDown(KeyCode.D))
             {
-                LoadSceneByName("D_A3_AT");
+                LoadSceneByName("D_HiIn_Lex");
             }
             else if (Input.GetKeyDown(KeyCode.E))
             {
-                LoadSceneByName("E_A3_AT");
+                LoadSceneByName("E_HiIn_Lex");
             }
             else if (Input.GetKeyDown(KeyCode.F))
             {
-                LoadSceneByName("F_A3_AT");
+                LoadSceneByName("F_HiIn_Lex");
             }
             else if (Input.GetKeyDown(KeyCode.G))
             {
-                LoadSceneByName("G_A3_AT");
+                LoadSceneByName("G_HiIn_Lex");
             }
             else if (Input.GetKeyDown(KeyCode.H))
             {
-                LoadSceneByName("H_A3_AT");
+                LoadSceneByName("H_HiIn_Lex");
             }
         }
-        // S plus Letter loads the  Scene for that letter with  COLOR and the instructions offset
+
         if (Input.GetKey(KeyCode.Alpha6))
         {
             if (Input.GetKeyDown(KeyCode.A))
             {
-                LoadSceneByName("A_S3_AT");
+                LoadSceneByName("A_HiIn_HiEx");
             }
             else if (Input.GetKeyDown(KeyCode.B))
             {
-                LoadSceneByName("B_S3_AT");
+                LoadSceneByName("B_HiIn_HiEx");
             }
             else if (Input.GetKeyDown(KeyCode.C))
             {
-                LoadSceneByName("C_S3_AT");
+                LoadSceneByName("C_HiIn_HiEx");
             }
             else if (Input.GetKeyDown(KeyCode.D))
             {
-                LoadSceneByName("D_S3_AT");
+                LoadSceneByName("D_HiIn_HiEx");
             }
             else if (Input.GetKeyDown(KeyCode.E))
             {
-                LoadSceneByName("E_S3_AT");
+                LoadSceneByName("E_HiIn_HiEx");
             }
             else if (Input.GetKeyDown(KeyCode.F))
             {
-                LoadSceneByName("F_S3_AT");
+                LoadSceneByName("F_HiIn_HiEx");
             }
             else if (Input.GetKeyDown(KeyCode.G))
             {
-                LoadSceneByName("G_S3_AT");
+                LoadSceneByName("G_HiIn_HiEx");
             }
             else if (Input.GetKeyDown(KeyCode.H))
             {
-                LoadSceneByName("H_S3_AT");
+                LoadSceneByName("H_HiIn_HiEx");
             }
         }
-        // K plus Letter loads the  Scene for that letter with NO color and the instructions offset
+
         if (Input.GetKey(KeyCode.Alpha4))
         {
             if (Input.GetKeyDown(KeyCode.A))
             {
-                LoadSceneByName("A_S2_AT");
+                LoadSceneByName("A_LIn_HiEx");
             }
             else if (Input.GetKeyDown(KeyCode.B))
             {
-                LoadSceneByName("B_S2_AT");
+                LoadSceneByName("B_LIn_HiEx");
             }
             else if (Input.GetKeyDown(KeyCode.C))
             {
-                LoadSceneByName("C_S2_AT");
+                LoadSceneByName("C_LIn_HiEx");
             }
             else if (Input.GetKeyDown(KeyCode.D))
             {
-                LoadSceneByName("D_S2_AT");
+                LoadSceneByName("D_LIn_HiEx");
             }
             else if (Input.GetKeyDown(KeyCode.E))
             {
-                LoadSceneByName("E_S2_AT");
+                LoadSceneByName("E_LIn_HiEx");
             }
             else if (Input.GetKeyDown(KeyCode.F))
             {
-                LoadSceneByName("F_S2_AT");
+                LoadSceneByName("F_LIn_HiEx");
             }
             else if (Input.GetKeyDown(KeyCode.G))
             {
-                LoadSceneByName("G_S2_AT");
+                LoadSceneByName("G_LIn_HiEx");
             }
             else if (Input.GetKeyDown(KeyCode.H))
             {
-                LoadSceneByName("H_S2_AT");
+                LoadSceneByName("H_LIn_HiEx");
             }
         }
-
-        if (Input.GetKeyDown(KeyCode.R))
+        if (Input.GetKeyDown(KeyCode.Space))
         {
-            resetView();
+            LoadScenesBasedOnConditions();
         }
+
     }
 
     public int[] GetNumbersFromCSV(bool testing, int participantId)
@@ -219,10 +331,10 @@ public class SceneDirector : MonoBehaviour
         if (!testing) { csvFile = Resources.Load<TextAsset>("Schedule/Yoke"); }
         else { csvFile = Resources.Load<TextAsset>("Schedule/YokeTest"); }
 
-        string[] lines = csvFile.text.Split('\n');
-        foreach (string line in lines)
+        string[] HiInes = csvFile.text.Split('\n');
+        foreach (string HiIne in HiInes)
         {
-            string[] values = line.Split(',');
+            string[] values = HiIne.Split(',');
             if (values.Length > 0 && int.TryParse(values[0], out int id) && id == participantId)
             {
                 int[] numbers = new int[values.Length - 1];

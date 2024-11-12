@@ -219,6 +219,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sceneD: {fileID: 0}
+  sceneDirectorObject: {fileID: 0}
   instrManager: {fileID: 0}
 --- !u!1 &3832495825162558752
 GameObject:
@@ -583,6 +584,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sceneD: {fileID: 0}
+  sceneDirectorObject: {fileID: 0}
   instrManager: {fileID: 0}
 --- !u!1 &6527186185317270029
 GameObject:
@@ -929,6 +931,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Timer
+      objectReference: {fileID: 0}
+    - target: {fileID: 8421063056502734829, guid: 7e96cf1bf81653e4f80419ad33a27537,
+        type: 3}
+      propertyPath: waitingTime
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
