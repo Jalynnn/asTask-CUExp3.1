@@ -376,6 +376,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4613795549355598986, guid: 29bccb021597e414b8d4000b3a67e27b,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4889592234236265117, guid: 29bccb021597e414b8d4000b3a67e27b,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
@@ -457,6 +462,11 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5440020736791744248, guid: 29bccb021597e414b8d4000b3a67e27b,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6910204350674015626, guid: 29bccb021597e414b8d4000b3a67e27b,
         type: 3}
       propertyPath: m_IsActive
       value: 1
@@ -734,22 +744,6 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 0}
     - targetCorrespondingSourceObject: {fileID: 4285429961050902583, guid: 29bccb021597e414b8d4000b3a67e27b,
-        type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 0}
-    - targetCorrespondingSourceObject: {fileID: 5858051267071112487, guid: 29bccb021597e414b8d4000b3a67e27b,
-        type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 0}
-    - targetCorrespondingSourceObject: {fileID: 8059181469618127279, guid: 29bccb021597e414b8d4000b3a67e27b,
-        type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 0}
-    - targetCorrespondingSourceObject: {fileID: 9129189796828549241, guid: 29bccb021597e414b8d4000b3a67e27b,
-        type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 0}
-    - targetCorrespondingSourceObject: {fileID: 1019065011214869387, guid: 29bccb021597e414b8d4000b3a67e27b,
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 0}
@@ -1606,6 +1600,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: ShapeE
       objectReference: {fileID: 0}
+    - target: {fileID: 2353259571298654198, guid: c724acb3920a8874d87b4bb2571ad228,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2406454773643183355, guid: c724acb3920a8874d87b4bb2571ad228,
         type: 3}
       propertyPath: m_IsActive
@@ -1728,13 +1727,18 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4605209952085949153, guid: c724acb3920a8874d87b4bb2571ad228,
         type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4605209952085949153, guid: c724acb3920a8874d87b4bb2571ad228,
+        type: 3}
       propertyPath: considerColor
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4605209952085949153, guid: c724acb3920a8874d87b4bb2571ad228,
         type: 3}
       propertyPath: isPracticeTask
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4729572608186863081, guid: c724acb3920a8874d87b4bb2571ad228,
         type: 3}
