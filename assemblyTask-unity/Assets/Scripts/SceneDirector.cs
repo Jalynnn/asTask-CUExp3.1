@@ -104,11 +104,11 @@ public class SceneDirector : MonoBehaviour
         switch (shapeNumber)
         {
             case 1:
-                if (condition.ToLower() == "li")
+                if (string.Equals(condition.Trim(), "li", StringComparison.OrdinalIgnoreCase))
                 {
                     SceneManager.LoadScene("A_LIn_LEx");
                 }
-                else if (condition.ToLower() == "hi")
+                else if (string.Equals(condition.Trim(), "hi", StringComparison.OrdinalIgnoreCase))
                 {
                     SceneManager.LoadScene("A_HiIn_LEx");
                 }
@@ -119,11 +119,11 @@ public class SceneDirector : MonoBehaviour
                 break;
 
             case 2:
-                if (condition.ToLower() == "li")
+                if (string.Equals(condition.Trim(), "li", StringComparison.OrdinalIgnoreCase))
                 {
                     SceneManager.LoadScene("B_LIn_LEx");
                 }
-                else if (condition.ToLower() == "hi")
+                else if (string.Equals(condition.Trim(), "hi", StringComparison.OrdinalIgnoreCase))
                 {
                     SceneManager.LoadScene("B_HiIn_LEx");
                 }
@@ -134,11 +134,11 @@ public class SceneDirector : MonoBehaviour
                 break;
 
             case 3:
-                if (condition.ToLower() == "li")
+                if (string.Equals(condition.Trim(), "li", StringComparison.OrdinalIgnoreCase))
                 {
                     SceneManager.LoadScene("C_LIn_LEx");
                 }
-                else if (condition.ToLower() == "hi")
+                else if (string.Equals(condition.Trim(), "hi", StringComparison.OrdinalIgnoreCase))
                 {
                     SceneManager.LoadScene("C_HiIn_LEx");
                 }
@@ -149,11 +149,11 @@ public class SceneDirector : MonoBehaviour
                 break;
 
             case 4:
-                if (condition.ToLower() == "li")
+                if (string.Equals(condition.Trim(), "li", StringComparison.OrdinalIgnoreCase))
                 {
                     SceneManager.LoadScene("D_LIn_LEx");
                 }
-                else if (condition.ToLower() == "hi")
+                else if (string.Equals(condition.Trim(), "hi", StringComparison.OrdinalIgnoreCase))
                 {
                     SceneManager.LoadScene("D_HiIn_LEx");
                 }
