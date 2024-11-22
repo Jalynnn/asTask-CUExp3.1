@@ -290,8 +290,10 @@ public class invisInstructions : MonoBehaviour
                 endButton.SetActive(true);
             }
             else
+            {
+                StartCoroutine(disableShape());
                 tlx.SetActive(true);
-
+            }
         }
     }
 
@@ -300,6 +302,7 @@ public class invisInstructions : MonoBehaviour
         builtShape.SetActive(true);
 
     }
+  
     //used to turn the hands off when a mistake was made or the trial is started
     public void toggleHands(bool temp)
     {
@@ -392,7 +395,7 @@ public class invisInstructions : MonoBehaviour
     }
     IEnumerator disableShape()
     {
-        yield return new WaitForSeconds(5f);
+        yield return new WaitForSeconds(2f);
         foreach (GameObject bar in builtBars)
         {
             bar.SetActive(false);
