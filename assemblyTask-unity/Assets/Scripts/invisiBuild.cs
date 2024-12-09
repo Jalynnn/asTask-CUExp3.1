@@ -245,6 +245,7 @@ public class invisiBuild : MonoBehaviour
         newBar.gameObject.GetComponent<XROffsetGrabInteractable>().enabled = false;
         newBar.gameObject.GetComponent<invisiBuild>().enabled = false;
         newBar.gameObject.GetComponent<MeshCollider>().enabled = false;
+        newBar.gameObject.GetComponent<propCheck>().enabled = false;
 
         if (RepeatCheck())//if step is repeated, bar fades out and they have to go again.
         {
