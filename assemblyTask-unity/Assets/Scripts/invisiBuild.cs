@@ -70,15 +70,19 @@ public class invisiBuild : MonoBehaviour
         {
             float distance = Vector3.Distance(transform.position, other.transform.position);
             lastTouchedBar = other.gameObject;
-            if (distance <= 0.06f && CheckProperties(other))
+            //Debug.Log(lastTouchedBar.name);
+            if (CheckProperties(other))
             {
-                correctPlacement = true;
+                if (distance <= 0.06f)
+                {
+                    correctPlacement = true;
+                }
+                else
+                {
+                    correctPlacement = false;
+                }
+                //
             }
-            else
-            {
-                correctPlacement = false;
-            }
-            //
         }
     }
     void OnTriggerExit(Collider other)
@@ -104,12 +108,7 @@ public class invisiBuild : MonoBehaviour
         {
             IsCloseToWorkbench = true;
         }
-        if (other.CompareTag("instruction"))
-        {
 
-            //Debug.Log("Entered" + other.name);
-
-        }
 
     }
     bool CheckProperties(Collider other)
@@ -119,10 +118,11 @@ public class invisiBuild : MonoBehaviour
         {
             if (this.gameObject.GetComponent<propCheck>().barlength != other.GetComponent<propCheck>().barlength)
             {
-                Debug.Log(this.gameObject.GetComponent<propCheck>().barlength + " " + other.GetComponent<propCheck>().barlength);
+                //Debug.Log(this.gameObject.GetComponent<propCheck>().barlength + " " + other.GetComponent<propCheck>().barlength);
                 correct = false;
                 expectedValue = other.GetComponent<propCheck>().barlength.ToString();
                 actualValue = this.gameObject.GetComponent<propCheck>().barlength.ToString();
+
                 errortype = "length";
             }
         }
@@ -130,7 +130,7 @@ public class invisiBuild : MonoBehaviour
         {
             if (this.gameObject.GetComponent<propCheck>().color != other.GetComponent<propCheck>().color)
             {
-                Debug.Log(this.gameObject.GetComponent<propCheck>().color + ": " + other.GetComponent<propCheck>().color);
+                //Debug.Log(this.gameObject.GetComponent<propCheck>().color + ": " + other.GetComponent<propCheck>().color);
                 correct = false;
                 expectedValue = other.GetComponent<propCheck>().color.ToString();
                 actualValue = this.gameObject.GetComponent<propCheck>().color.ToString();
@@ -156,7 +156,7 @@ public class invisiBuild : MonoBehaviour
                 // button presses
                 InputDevices.GetDevicesWithCharacteristics(InputDeviceCharacteristics.Left, leftHandDevices);
                 InputDevices.GetDevicesWithCharacteristics(InputDeviceCharacteristics.Right, rightHandDevices);
-//                Debug.Log("Correct:" + correctPlacement + "Type:" + errortype);
+                //                Debug.Log("Correct:" + correctPlacement + "Type:" + errortype);
 
                 bool rightTrigger = false;
                 bool leftTrigger = false;
@@ -169,7 +169,7 @@ public class invisiBuild : MonoBehaviour
                         {
                             if (rightTrigger && correctPlacement && IsCloseToWorkbench)
                             {
-                               
+
                                 canBeBuilt = false;
                                 StartCoroutine("rightBar");
                                 StartCoroutine("build");
@@ -178,7 +178,7 @@ public class invisiBuild : MonoBehaviour
                             {
                                 canBeBuilt = false;
                                 StartCoroutine("WrongBar");
-                               
+
                             }
                         }
                         else
@@ -242,10 +242,13 @@ public class invisiBuild : MonoBehaviour
         GameObject newBar = Instantiate(this.gameObject, lastTouchedBar.transform.position, lastTouchedBar.transform.rotation);
         instructions.GetComponent<invisInstructions>().builtBars.Add(newBar); //this is the bar that is being built
         newBar.gameObject.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeAll;
+        newBar.gameObject.GetComponent<Rigidbody>().isKinematic = true;
         newBar.gameObject.GetComponent<XROffsetGrabInteractable>().enabled = false;
         newBar.gameObject.GetComponent<invisiBuild>().enabled = false;
         newBar.gameObject.GetComponent<MeshCollider>().enabled = false;
         newBar.gameObject.GetComponent<propCheck>().enabled = false;
+
+        //newBar.gameObject.GetComponent<Rigidbody>().enabled = false;
 
         if (RepeatCheck())//if step is repeated, bar fades out and they have to go again.
         {
@@ -262,7 +265,7 @@ public class invisiBuild : MonoBehaviour
         }
         else
         {
-            Debug.Log("No repeat in build");
+
             inst.ArrowNext();
             yield return new WaitForSeconds(0.25f);
             this.transform.position = startPos;
@@ -320,7 +323,6 @@ public class invisiBuild : MonoBehaviour
             newBar.transform.position = lastTouchedBar.transform.position;
             newBar.transform.rotation = lastTouchedBar.transform.rotation;
         } //this is the bar that is being built
-
         this.gameObject.GetComponent<XROffsetGrabInteractable>().interactionLayerMask = 0;
         newBar.gameObject.GetComponent<XROffsetGrabInteractable>().interactionLayerMask = 0;
         newBar.gameObject.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeAll;
@@ -332,6 +334,7 @@ public class invisiBuild : MonoBehaviour
         yield return new WaitForSeconds(0.3f);
         canBeBuilt = true;
         this.gameObject.GetComponent<XROffsetGrabInteractable>().interactionLayerMask = 1;
+        this.gameObject.GetComponent<invisiBuild>().correctPlacement = false;
     }
 
     IEnumerator WrongBar()
@@ -368,9 +371,9 @@ public class invisiBuild : MonoBehaviour
             inst.mistakes++;
             inst.SetTempText();
             inst.builtShape.SetActive(true);
-           //inst.builtShape.transform.GetChild(1).gameObject.SetActive(true);
+            //inst.builtShape.transform.GetChild(1).gameObject.SetActive(true);
             inst.stepPanel.SetActive(false);
-            manager.GetComponent<ExperimentLog>().AddData(this.gameObject.name, "Error", inst.currentStep.ToString(), errortype);
+            manager.GetComponent<ExperimentLog>().AddData(this.gameObject.name, "Error", inst.currentStep.ToString(), errortype, expectedValue, actualValue);
             if (!crossSpawned)
             {
                 tempCross = Instantiate(cross, this.transform.position, Quaternion.identity);
@@ -417,6 +420,7 @@ public class invisiBuild : MonoBehaviour
         yield return new WaitForSeconds(0.3f);
         canBeBuilt = true;
         errortype = "placement";
+        this.gameObject.GetComponent<invisiBuild>().correctPlacement = false;
 
     }
 

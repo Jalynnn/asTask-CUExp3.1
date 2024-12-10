@@ -72,7 +72,7 @@ public class invisInstructions : MonoBehaviour
         }
         toggleHands(false);
 
-        if (sceneDirector.trialNumber == 6 || sceneDirector.trialNumber == 8)
+        if (sceneDirector.trialNumber == 8)
         {
             instructionPanel.text = "Please perform Step 1";
         }
@@ -91,11 +91,13 @@ public class invisInstructions : MonoBehaviour
                 bar.SetActive(true);
             }
         }
-        setScaffold();
+
         if (sceneDirector.trialNumber == 8)
         {
             DisableMeshRenderersRecursive(builtShape.transform); // hides shape to be built in transfer trial
         }
+        setScaffold();
+        
 
         StartCoroutine(wait(1));
     }
@@ -267,7 +269,7 @@ public class invisInstructions : MonoBehaviour
     {
         putRepeatText = false;
         //        Debug.Log("Next Step");
-        instructionBars[currentStep].GetComponent<MeshCollider>().enabled = false;
+        instructionBars[currentStep].SetActive(false);
         if (currentStep + 1 < instructionBars.Length)
         {
             if (previewBars[currentStep] != null) previewBars[currentStep].SetActive(true);
@@ -302,7 +304,7 @@ public class invisInstructions : MonoBehaviour
         builtShape.SetActive(true);
 
     }
-  
+
     //used to turn the hands off when a mistake was made or the trial is started
     public void toggleHands(bool temp)
     {
@@ -338,6 +340,14 @@ public class invisInstructions : MonoBehaviour
         if (sceneDirector.trialNumber == 2)
         {
             sceneDirector.StepDisplay[4] = false;
+        }
+        else if (sceneDirector.trialNumber == 8)
+        {
+            // Turn all objects in StepDisplay off
+            for (int i = 0; i < sceneDirector.StepDisplay.Length; i++)
+            {
+                sceneDirector.StepDisplay[i] = false;
+            }
         }
 
         else if (sceneDirector.trialNumber >= 3)
