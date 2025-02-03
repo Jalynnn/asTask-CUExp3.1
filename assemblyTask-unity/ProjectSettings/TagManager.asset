@@ -23,6 +23,8 @@ TagManager:
   - repeatArrow
   - nextArrow
   - DebugWindow
+  - XRRig
+  - menu
   layers:
   - Default
   - TransparentFX

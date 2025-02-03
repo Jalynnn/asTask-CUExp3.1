@@ -521,7 +521,7 @@ GameObject:
   - component: {fileID: 3160566869218655732}
   m_Layer: 16
   m_Name: VR Rig
-  m_TagString: Untagged
+  m_TagString: XRRig
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

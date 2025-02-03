@@ -2409,7 +2409,7 @@ GameObject:
   - component: {fileID: 1252385910}
   m_Layer: 10
   m_Name: VR Rig
-  m_TagString: Untagged
+  m_TagString: XRRig
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2584,6 +2584,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: SceneManager
+      objectReference: {fileID: 0}
+    - target: {fileID: 4189962114100853205, guid: c65a92bbe6f45954fa115c51f76294f0,
+        type: 3}
+      propertyPath: testing
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4189962114100853205, guid: c65a92bbe6f45954fa115c51f76294f0,
         type: 3}

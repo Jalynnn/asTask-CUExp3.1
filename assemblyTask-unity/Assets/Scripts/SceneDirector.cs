@@ -33,6 +33,7 @@ public class SceneDirector : MonoBehaviour
     [HideInInspector] public ExperimentType initialType;
     [HideInInspector] public int prevMentalTLX;
     [HideInInspector] public int tlxDifference;
+    public bool testing = false;
     public bool[] StepDisplay = new bool[5] { true, true, true, true, true };
     [HideInInspector] public int scaffoldsRemoved = 0;
     public enum ExperimentType
@@ -57,12 +58,26 @@ public class SceneDirector : MonoBehaviour
         else
         {
             instance = this;
+            SceneManager.sceneLoaded += OnSceneLoaded;
         }
         expLog = instance.GetComponent<ExperimentLog>();
         participantID = expLog.participantNumber;
         initialType = experimentType;
-        //conditions = GetConditionFromCSV(participantID);
+        conditions = GetConditionFromCSV(participantID);
     }
+    void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+{
+    // Find your player and populate the data like e.g.
+    if(testing){
+        GameObject.FindWithTag("XRRig").GetComponent<ContinuousMovement>().enabled = true;
+       
+        GameObject menu = GameObject.FindWithTag("menu");
+        foreach (Transform child in menu.transform)
+        {
+            child.gameObject.SetActive(true);
+        }
+    }       
+}
     public string[] GetConditionFromCSV(int participantId)
     {
         // Load the appropriate CSV file based on the testing flag
@@ -323,6 +338,7 @@ public class SceneDirector : MonoBehaviour
         {
             LoadScenesBasedOnConditions();
         }
+       
 
     }
 
