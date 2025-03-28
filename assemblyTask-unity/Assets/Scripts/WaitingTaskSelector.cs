@@ -32,12 +32,12 @@ public class WaitingTaskSelector : MonoBehaviour
        
         if (task == TaskType.Normal) //Take normal instructions and start 90s timer for bouncing ball
         {
-            instructionText.text = "Please wait for 90 seconds. You will then need to build the shape again with no instructions. Please count the number of bounces the ball makes in the meantime.";
+            instructionText.text = "Please move the loose bars from the table.  Put them in the transparent cube on the side. Try to get as many bars as possible. You have 90 seconds. Then you will need to build the previously studied shape again without instructions. You do not need to memorize this colored pile. ";
             StartCoroutine(LoadSceneAfterDelay());
         }
         else
         {
-            instructionText.text = "Please take apart all shapes before you. Put them in the transparent cube on the side. Try to get as many bars as possible. You have 90 seconds. You will then need to build the shape again with no instructions.";
+            instructionText.text = "Please move the loose bars from the table.  Put them in the transparent cube on the side. Try to get as many bars as possible. You have 90 seconds. Then you will need to build the previously studied shape again without instructions. You do not need to memorize this colored pile.";
             StartCoroutine(LoadSceneAfterDelay());
         }
         foreach (GameObject obj in normalObjects) // This is used to toggle the objects that are used in the normal task.

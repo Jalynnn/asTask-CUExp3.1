@@ -2477,19 +2477,19 @@ PrefabInstance:
     - target: {fileID: 2361052004123083522, guid: 77733789ea29fc042910e37f9f177df2,
         type: 3}
       propertyPath: m_text
-      value: Please take apart this shape before you. Put them in the transparent
+      value: 'Please move the loose bars from the table.  Put them in the transparent
         cube on the side. Try to get as many bars as possible. You have 90 seconds.
-        You will then need to build the shape again with no instructions.
+        Then you will need to build the previously studied shape again without instructions. '
       objectReference: {fileID: 0}
     - target: {fileID: 2361052004123083522, guid: 77733789ea29fc042910e37f9f177df2,
         type: 3}
       propertyPath: m_fontSize
-      value: 2.5
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 2361052004123083522, guid: 77733789ea29fc042910e37f9f177df2,
         type: 3}
       propertyPath: m_fontSizeBase
-      value: 2.5
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 2361052004123083522, guid: 77733789ea29fc042910e37f9f177df2,
         type: 3}
@@ -2864,8 +2864,18 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5422980217896665986, guid: e2d63e632dd1d904cab3dace3796e198,
         type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.5853626
+      objectReference: {fileID: 0}
+    - target: {fileID: 5422980217896665986, guid: e2d63e632dd1d904cab3dace3796e198,
+        type: 3}
       propertyPath: m_LocalScale.y
-      value: 0.8168302
+      value: 0.67503655
+      objectReference: {fileID: 0}
+    - target: {fileID: 5422980217896665986, guid: e2d63e632dd1d904cab3dace3796e198,
+        type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.6087771
       objectReference: {fileID: 0}
     - target: {fileID: 5422980217896665986, guid: e2d63e632dd1d904cab3dace3796e198,
         type: 3}

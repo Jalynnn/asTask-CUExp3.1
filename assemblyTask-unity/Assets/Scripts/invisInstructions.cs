@@ -84,20 +84,20 @@ public class invisInstructions : MonoBehaviour
         stepPanel.SetActive(false);
 
         tempText = instructionTexts[currentStep];
-        if (!stepByStep || sceneDirector.trialNumber == 8)
-        {
-            foreach (GameObject bar in instructionBars)
-            {
-                bar.SetActive(true);
-            }
-        }
+        // if (!stepByStep || sceneDirector.trialNumber == 8)
+        // {
+        //     foreach (GameObject bar in instructionBars)
+        //     {
+        //         bar.SetActive(true);
+        //     }
+        // }
 
         if (sceneDirector.trialNumber == 8)
         {
             DisableMeshRenderersRecursive(builtShape.transform); // hides shape to be built in transfer trial
         }
         setScaffold();
-        
+
 
         StartCoroutine(wait(1));
     }
@@ -111,6 +111,22 @@ public class invisInstructions : MonoBehaviour
             {
                 StartCoroutine(FadeInRoutine(bar, duration)); // 2 second fade duration
                 break; // Exit the loop after finding the first active bar
+            }
+        }
+    }
+    public void activateNext()
+    {
+
+        for (int i = 0; i < instructionBars.Length; i++)
+        {
+            if (!instructionBars[i].activeSelf)
+            {
+                instructionBars[i].SetActive(true);
+                if (i > 0)
+                {
+                    instructionBars[i - 1].SetActive(false);
+                }
+                break;
             }
         }
     }

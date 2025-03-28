@@ -70,7 +70,7 @@ public class invisiBuild : MonoBehaviour
         {
             float distance = Vector3.Distance(transform.position, other.transform.position);
             lastTouchedBar = other.gameObject;
-            //Debug.Log(lastTouchedBar.name);
+            Debug.Log(lastTouchedBar.name);
             if (CheckProperties(other))
             {
                 if (distance <= 0.06f)
@@ -322,6 +322,7 @@ public class invisiBuild : MonoBehaviour
         {
             newBar.transform.position = lastTouchedBar.transform.position;
             newBar.transform.rotation = lastTouchedBar.transform.rotation;
+            lastTouchedBar.GetComponent<MeshCollider>().enabled = false;
         } //this is the bar that is being built
         this.gameObject.GetComponent<XROffsetGrabInteractable>().interactionLayerMask = 0;
         newBar.gameObject.GetComponent<XROffsetGrabInteractable>().interactionLayerMask = 0;
@@ -329,9 +330,11 @@ public class invisiBuild : MonoBehaviour
         newBar.gameObject.GetComponent<XROffsetGrabInteractable>().enabled = false;
         newBar.gameObject.GetComponent<invisiBuild>().enabled = false;
         inst.nextStep();
+        
         this.transform.position = startPos;
         this.transform.rotation = originalRotation;
         yield return new WaitForSeconds(0.3f);
+        inst.activateNext();
         canBeBuilt = true;
         this.gameObject.GetComponent<XROffsetGrabInteractable>().interactionLayerMask = 1;
         this.gameObject.GetComponent<invisiBuild>().correctPlacement = false;

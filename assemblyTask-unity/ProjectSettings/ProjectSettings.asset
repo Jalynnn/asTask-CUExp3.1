@@ -154,7 +154,7 @@ PlayerSettings:
   androidSupportedAspectRatio: 1
   androidMaxAspectRatio: 2.1
   applicationIdentifier:
-    Android: com.com.xrfutureofwork.FutureofWork
+    Android: com.com.onrassemblytask.AsTask131
     Standalone: com.com.xr-future-of-work.Future-of-Work
   buildNumber:
     Standalone: 0

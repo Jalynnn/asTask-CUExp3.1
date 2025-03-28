@@ -338,6 +338,10 @@ public class SceneDirector : MonoBehaviour
         {
             LoadScenesBasedOnConditions();
         }
+         if (Input.GetKeyDown(KeyCode.T))
+        {
+            testing = !testing;
+        }
        
 
     }
