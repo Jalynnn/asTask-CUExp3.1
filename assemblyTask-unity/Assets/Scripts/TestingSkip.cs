@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class TestingSkip : MonoBehaviour
 {
-    public GameObject tempObj;
+    public GameObject tempObjT;
+    public GameObject tempObjM;
     // Start is called before the first frame update
     void Start()
     {
@@ -16,7 +17,11 @@ public class TestingSkip : MonoBehaviour
     {
         if(Input.GetKeyDown(KeyCode.T))
         {
-            tempObj.SetActive(true);
+            tempObjT.SetActive(true);
+        }
+        if(Input.GetKeyDown(KeyCode.M))
+        {
+        tempObjM.SetActive(!tempObjM.activeSelf);
         }
        
     }

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using UnityEngine.XR.Interaction.Toolkit;
+using System.Linq.Expressions;
 
 
 public class invisInstructions : MonoBehaviour
@@ -19,7 +20,7 @@ public class invisInstructions : MonoBehaviour
     public bool stepByStep;
     public TMP_Text instructionPanel;
     public GameObject stepPanel;
-    public GameObject builtShape;
+    public GameObject BuildingMenu;
     [HideInInspector] public GameObject[] hands;
     public bool isAdaptive;
     public GameObject tlx;
@@ -33,6 +34,9 @@ public class invisInstructions : MonoBehaviour
     GameObject repeatArrow;
     GameObject nextArrow;
     public GameObject endButton;
+    public bool GermaneHighLoad;
+
+    bool TLXWorkloadAdaptation = false;
 
     // Start is called before the first frame update
     void Start()
@@ -48,6 +52,9 @@ public class invisInstructions : MonoBehaviour
         nextArrow = GameObject.FindWithTag("nextArrow");
         repeatArrow.SetActive(false);
         nextArrow.SetActive(false);
+        if (sceneDirector.getCondition() == "li") GermaneHighLoad = false;
+        else GermaneHighLoad = true;
+
 
         if (instructionsAreSeperated) // This causes the instructions to be set to high extraneous load. In this case it decreases font size and changes the location to be offset. Also changes font to different asset with poor contrast. This is done to make the instructions harder to read.
         {
@@ -75,10 +82,48 @@ public class invisInstructions : MonoBehaviour
         if (sceneDirector.trialNumber == 8)
         {
             instructionPanel.text = "Please perform Step 1";
+            if (BuildingMenu.transform.parent != null)
+            {
+                BuildingMenu.transform.parent.gameObject.SetActive(false);
+            }
+
         }
         else
         {
             instructionPanel.text = instructionTexts[currentStep];
+            if (!GermaneHighLoad)
+            {
+                foreach (GameObject bar in instructionBars)
+                {
+                    if (bar.TryGetComponent<MeshRenderer>(out var meshRenderer))
+                    {
+                        meshRenderer.enabled = true;
+
+                        if (meshRenderer.material.name.Contains("Yellow"))
+                        {
+                            Material mat = Resources.Load<Material>("Materials/YellowTransp");
+                            meshRenderer.material = mat;
+                        }
+                        else if (meshRenderer.material.name.Contains("Green"))
+                        {
+                            Material mat = Resources.Load<Material>("Materials/GreenTransp");
+                            meshRenderer.material = mat;
+
+                        }
+                        else if (meshRenderer.material.name.Contains("Blue"))
+                        {
+                            Material mat = Resources.Load<Material>("Materials/BlueTransp");
+                            meshRenderer.material = mat;
+
+                        }
+                        else if (meshRenderer.material.name.Contains("Red"))
+                        {
+                            Material mat = Resources.Load<Material>("Materials/RedTransp");
+                            meshRenderer.material = mat;
+                        }
+                    }
+                }
+            }
 
         }
         stepPanel.SetActive(false);
@@ -94,12 +139,11 @@ public class invisInstructions : MonoBehaviour
 
         if (sceneDirector.trialNumber == 8)
         {
-            DisableMeshRenderersRecursive(builtShape.transform); // hides shape to be built in transfer trial
+            DisableMeshRenderersRecursive(BuildingMenu.transform); // hides shape to be built in transfer trial
         }
-        setScaffold();
+        SetScaffold();
 
-
-        StartCoroutine(wait(1));
+        StartCoroutine(Wait(1));
     }
 
     public void FadeInCorrectBar(float duration = 1f)
@@ -131,6 +175,7 @@ public class invisInstructions : MonoBehaviour
         }
     }
 
+
     private IEnumerator FadeInRoutine(GameObject obj, float duration)
     {
         Renderer renderer = obj.GetComponent<Renderer>();
@@ -149,7 +194,7 @@ public class invisInstructions : MonoBehaviour
             yield return null;
         }
         // Reset the material back to the original
-        renderer.material = originalMaterial;
+       // if (GermaneHighLoad) renderer.material = originalMaterial;
         SetActiveRecursively(obj, true);
     }
     public void FadeOutCorrectBar(float duration = 1f)
@@ -219,7 +264,7 @@ public class invisInstructions : MonoBehaviour
     }
     void SetActiveRecursively(GameObject obj, bool value)
     {
-
+// this turns on the numbers in the instruction bars when the user is building the shape.
         foreach (Transform child in obj.transform)
         {
             child.gameObject.SetActive(value);
@@ -283,21 +328,25 @@ public class invisInstructions : MonoBehaviour
     // This calls the next step in the instructions. It also handles the data logging for the instructions.
     public void nextStep()
     {
+        
         putRepeatText = false;
         //        Debug.Log("Next Step");
-        instructionBars[currentStep].SetActive(false);
+        if (GermaneHighLoad) instructionBars[currentStep].SetActive(false);
+        else instructionBars[currentStep].GetComponent<Collider>().enabled = false;
+
         if (currentStep + 1 < instructionBars.Length)
         {
+            //builtShape.SetActive(true);
             if (previewBars[currentStep] != null) previewBars[currentStep].SetActive(true);
             //dataLog("Step", "completed");
             currentStep++;
             sceneDirector.stepCounter++;
             instructionBars[currentStep].SetActive(true);
-            setText();
-
+            SetText();
         }
         else
         {
+           
             // instructionPanel.text = "You have completed the instructions!";
             instructionPanel.gameObject.SetActive(false);
             dataLog("Trial", "complete");
@@ -309,7 +358,7 @@ public class invisInstructions : MonoBehaviour
             }
             else
             {
-                StartCoroutine(disableShape());
+               if(GermaneHighLoad) StartCoroutine(DisableShape());
                 tlx.SetActive(true);
             }
         }
@@ -317,7 +366,7 @@ public class invisInstructions : MonoBehaviour
 
     public void showBuiltShape()
     {
-        builtShape.SetActive(true);
+        BuildingMenu.SetActive(true);
 
     }
 
@@ -336,7 +385,7 @@ public class invisInstructions : MonoBehaviour
             Destroy(cross);
         }
     }
-    void setText()
+    void SetText()
     {
         tempText = instructionTexts[currentStep];
         Debug.Log("Current Step: " + sceneDirector.StepDisplay[currentStep]);
@@ -350,10 +399,10 @@ public class invisInstructions : MonoBehaviour
         else
             SetCurrentStepText();
     }
-    public void setScaffold()
+    public void SetScaffold()
     {
         Debug.Log("TLX" + sceneDirector.tlxDifference);
-        if (sceneDirector.trialNumber == 2)
+        if (sceneDirector.trialNumber == 2 && GermaneHighLoad)
         {
             sceneDirector.StepDisplay[4] = false;
         }
@@ -366,28 +415,38 @@ public class invisInstructions : MonoBehaviour
             }
         }
 
-        else if (sceneDirector.trialNumber >= 3)
+        else if (TLXWorkloadAdaptation && sceneDirector.trialNumber >= 3)
         {
-
-            if (sceneDirector.tlxDifference > 2)
+            if (TLXWorkloadAdaptation)
             {
-                int s = FindFirstFalseInStepDisplay();
-                if (s >= 2)
+                if (sceneDirector.tlxDifference > 2)
                 {
-                    sceneDirector.StepDisplay[s - 1] = false;
-                    sceneDirector.StepDisplay[s - 2] = false;
-                    sceneDirector.scaffoldsRemoved += 2;
+                    int s = FindFirstFalseInStepDisplay();
+                    if (s >= 2)
+                    {
+                        sceneDirector.StepDisplay[s - 1] = false;
+                        sceneDirector.StepDisplay[s - 2] = false;
+                        sceneDirector.scaffoldsRemoved += 2;
+                    }
+                }
+
+                else if (sceneDirector.tlxDifference <= 2 && sceneDirector.tlxDifference >= -2 && sceneDirector.prevMentalTLX <= 19)
+                {
+                    int s = FindFirstFalseInStepDisplay();
+                    if (s >= 1)
+                    {
+                        sceneDirector.StepDisplay[s - 1] = false;
+                        sceneDirector.scaffoldsRemoved++;
+                    }
                 }
             }
-
-            else if (sceneDirector.tlxDifference <= 2 && sceneDirector.tlxDifference >= -2 && sceneDirector.prevMentalTLX <= 19)
+            else if (GermaneHighLoad)
             {
                 int s = FindFirstFalseInStepDisplay();
                 if (s >= 1)
                 {
                     sceneDirector.StepDisplay[s - 1] = false;
                     sceneDirector.scaffoldsRemoved++;
-
                 }
             }
         }
@@ -413,13 +472,13 @@ public class invisInstructions : MonoBehaviour
         if (isAdaptive)
             instructionPanel.text = tempText;
     }
-    IEnumerator wait(float time)
+    IEnumerator Wait(float time)
     {
         yield return new WaitForSeconds(time);
         sceneDirector.resetTime();
         dataLog("Trial", "loaded");
     }
-    IEnumerator disableShape()
+    IEnumerator DisableShape()
     {
         yield return new WaitForSeconds(2f);
         foreach (GameObject bar in builtBars)

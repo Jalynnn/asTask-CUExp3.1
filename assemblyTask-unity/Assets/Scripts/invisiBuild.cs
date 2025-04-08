@@ -250,31 +250,31 @@ public class invisiBuild : MonoBehaviour
 
         //newBar.gameObject.GetComponent<Rigidbody>().enabled = false;
 
-        if (RepeatCheck())//if step is repeated, bar fades out and they have to go again.
-        {
-            Debug.Log("Repeat in build");
-            instructions.GetComponent<invisInstructions>().ArrowRepeat();
-            yield return new WaitForSeconds(0.25f);
-            FadeOutPlaced(newBar);
-            this.transform.position = startPos;
-            this.transform.rotation = originalRotation;
-            yield return new WaitForSeconds(.5f);
-            this.gameObject.GetComponent<XROffsetGrabInteractable>().interactionLayerMask = 1;
-            manager.GetComponent<ExperimentLog>().AddData(this.gameObject.name, "Correct placement, Repeat", inst.currentStep.ToString());
-            //instructions.GetComponent<invisInstructions>().toggleHands(true);
-        }
-        else
-        {
+        // if (RepeatCheck())//if step is repeated, bar fades out and they have to go again.
+        // {
+        //     Debug.Log("Repeat in build");
+        //     instructions.GetComponent<invisInstructions>().ArrowRepeat();
+        //     yield return new WaitForSeconds(0.25f);
+        //     FadeOutPlaced(newBar);
+        //     this.transform.position = startPos;
+        //     this.transform.rotation = originalRotation;
+        //     yield return new WaitForSeconds(.5f);
+        //     this.gameObject.GetComponent<XROffsetGrabInteractable>().interactionLayerMask = 1;
+        //     manager.GetComponent<ExperimentLog>().AddData(this.gameObject.name, "Correct placement, Repeat", inst.currentStep.ToString());
+        //     //instructions.GetComponent<invisInstructions>().toggleHands(true);
+        // }
+        // else
+        // { 
+        //Take all of this out since we need to do this for the high germane load condition all the time. In HG it always corrects the user anyway. 
 
-            inst.ArrowNext();
-            yield return new WaitForSeconds(0.25f);
-            this.transform.position = startPos;
-            this.transform.rotation = originalRotation;
-            this.gameObject.GetComponent<XROffsetGrabInteractable>().interactionLayerMask = 1;
-            manager.GetComponent<ExperimentLog>().AddData(this.gameObject.name, "Correct placement", inst.currentStep.ToString());
-            inst.nextStep();
-            inst.builtBars.Append(newBar.gameObject);
-        }
+        // inst.ArrowNext();
+        yield return new WaitForSeconds(0.25f);
+        this.transform.SetPositionAndRotation(startPos, originalRotation);
+        this.gameObject.GetComponent<XROffsetGrabInteractable>().interactionLayerMask = 1;
+        manager.GetComponent<ExperimentLog>().AddData(this.gameObject.name, "Correct placement", inst.currentStep.ToString());
+        inst.nextStep();
+        inst.builtBars.Append(newBar.gameObject);
+        // }
         StartCoroutine("resetCanBeBuilt");
     }
     public void FadeOutPlaced(GameObject bar)
@@ -330,7 +330,7 @@ public class invisiBuild : MonoBehaviour
         newBar.gameObject.GetComponent<XROffsetGrabInteractable>().enabled = false;
         newBar.gameObject.GetComponent<invisiBuild>().enabled = false;
         inst.nextStep();
-        
+
         this.transform.position = startPos;
         this.transform.rotation = originalRotation;
         yield return new WaitForSeconds(0.3f);
@@ -343,7 +343,7 @@ public class invisiBuild : MonoBehaviour
     IEnumerator WrongBar()
     {
         Debug.Log("Wrong bar");
-        if (sceneDirector.experimentType != SceneDirector.ExperimentType.ExpA)
+        if (sceneDirector.experimentType != SceneDirector.ExperimentType.ExpA || !inst.GermaneHighLoad)
         {
             this.gameObject.GetComponent<XROffsetGrabInteractable>().interactionLayerMask = 0;
             inst.toggleHands(false);
@@ -356,7 +356,7 @@ public class invisiBuild : MonoBehaviour
             this.transform.rotation = originalRotation;
             inst.mistakes++;
             inst.SetTempText();
-            inst.builtShape.SetActive(true);
+            if (inst.currentStep == 6 && !inst.GermaneHighLoad) {  } else inst.BuildingMenu.SetActive(true);
             //inst.builtShape.transform.GetChild(1).gameObject.SetActive(true);
             inst.stepPanel.SetActive(false);
             manager.GetComponent<ExperimentLog>().AddData(this.gameObject.name, "Error", inst.currentStep.ToString(), errortype);
@@ -365,6 +365,7 @@ public class invisiBuild : MonoBehaviour
             this.gameObject.GetComponent<XROffsetGrabInteractable>().interactionLayerMask = 1;
             inst.cross = tempCross;
             crossSpawned = false;
+            inst.nextStep();
             StartCoroutine("resetCanBeBuilt");
         }
         else // experiment A here
@@ -373,7 +374,7 @@ public class invisiBuild : MonoBehaviour
             inst.toggleHands(false);
             inst.mistakes++;
             inst.SetTempText();
-            inst.builtShape.SetActive(true);
+            inst.BuildingMenu.SetActive(true);
             //inst.builtShape.transform.GetChild(1).gameObject.SetActive(true);
             inst.stepPanel.SetActive(false);
             manager.GetComponent<ExperimentLog>().AddData(this.gameObject.name, "Error", inst.currentStep.ToString(), errortype, expectedValue, actualValue);

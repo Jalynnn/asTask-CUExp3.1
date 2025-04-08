@@ -1511,7 +1511,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dfd3b1e0516505148b035c094e53dca8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tempObj: {fileID: 547383365}
+  tempObjT: {fileID: 0}
+  tempObjM: {fileID: 0}
 --- !u!1 &1651569444 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5444242841820559754, guid: c724acb3920a8874d87b4bb2571ad228,
@@ -2324,6 +2325,7 @@ MonoBehaviour:
   fadingMaterial: {fileID: 0}
   builtBars: []
   endButton: {fileID: 0}
+  GermaneHighLoad: 0
 --- !u!1001 &5897773746125249795
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2370,7 +2372,7 @@ PrefabInstance:
     - target: {fileID: 3045430867577243891, guid: acb13466d1f8c9947a574c60515ccb46,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.047
+      value: 0.77
       objectReference: {fileID: 0}
     - target: {fileID: 3045430867577243891, guid: acb13466d1f8c9947a574c60515ccb46,
         type: 3}
@@ -2410,6 +2412,11 @@ PrefabInstance:
     - target: {fileID: 3045430867577243891, guid: acb13466d1f8c9947a574c60515ccb46,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3704726093381990267, guid: acb13466d1f8c9947a574c60515ccb46,
+        type: 3}
+      propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3704726093381990267, guid: acb13466d1f8c9947a574c60515ccb46,
@@ -2465,7 +2472,7 @@ PrefabInstance:
     - target: {fileID: 8199787606302280316, guid: acb13466d1f8c9947a574c60515ccb46,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8209456869778225913, guid: acb13466d1f8c9947a574c60515ccb46,
         type: 3}
@@ -2480,6 +2487,46 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 5897773746125249797}
+    - targetCorrespondingSourceObject: {fileID: 1312850121438351512, guid: acb13466d1f8c9947a574c60515ccb46,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 0}
+    - targetCorrespondingSourceObject: {fileID: 2275389728621587949, guid: acb13466d1f8c9947a574c60515ccb46,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 0}
+    - targetCorrespondingSourceObject: {fileID: 4379884799220068236, guid: acb13466d1f8c9947a574c60515ccb46,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 0}
+    - targetCorrespondingSourceObject: {fileID: 9192474117769339149, guid: acb13466d1f8c9947a574c60515ccb46,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 0}
+    - targetCorrespondingSourceObject: {fileID: 5275467363192028710, guid: acb13466d1f8c9947a574c60515ccb46,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 0}
+    - targetCorrespondingSourceObject: {fileID: 5144248488689800104, guid: acb13466d1f8c9947a574c60515ccb46,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 0}
+    - targetCorrespondingSourceObject: {fileID: 4577238791177563084, guid: acb13466d1f8c9947a574c60515ccb46,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 0}
+    - targetCorrespondingSourceObject: {fileID: 4455331538817159315, guid: acb13466d1f8c9947a574c60515ccb46,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 0}
+    - targetCorrespondingSourceObject: {fileID: 8460689362236317609, guid: acb13466d1f8c9947a574c60515ccb46,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 0}
+    - targetCorrespondingSourceObject: {fileID: 5475341908618051489, guid: acb13466d1f8c9947a574c60515ccb46,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 0}
   m_SourcePrefab: {fileID: 100100000, guid: acb13466d1f8c9947a574c60515ccb46, type: 3}
 --- !u!1 &5897773746125249796 stripped
 GameObject:
@@ -2499,7 +2546,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dfd3b1e0516505148b035c094e53dca8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tempObj: {fileID: 547383365}
+  tempObjT: {fileID: 0}
+  tempObjM: {fileID: 547383365}
 --- !u!1001 &7761286666454326376
 PrefabInstance:
   m_ObjectHideFlags: 0

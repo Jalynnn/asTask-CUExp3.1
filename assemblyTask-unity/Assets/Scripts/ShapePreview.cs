@@ -12,10 +12,16 @@ public class ShapePreview : MonoBehaviour
     public bool isPreview = false;
     public Material white;
     public bool isPracticeTask = false;
+    public ExperimentLog log;
+    public GameObject managerObj;
+    public SceneDirector sceneDirector;
 
     // Start is called before the first frame update
     void Start()
     {
+        if (log == null) managerObj = GameObject.FindWithTag("Manager");
+        if (managerObj.GetComponent<ExperimentLog>() != null) log = managerObj.GetComponent<ExperimentLog>();
+        sceneDirector = managerObj.GetComponent<SceneDirector>();
         if (!considerColor && isPreview)
         {
             foreach (Transform child in transform)
@@ -47,7 +53,7 @@ public class ShapePreview : MonoBehaviour
     }
     void OnEnable()
     {
-        if (isPreview)
+        if (isPreview && sceneDirector.getCondition() != "li")
             StartCoroutine(disappear(0f));
     }
 
@@ -92,7 +98,7 @@ public class ShapePreview : MonoBehaviour
             if (propCheck1 != null)
             {
                 propCheck1.color = null;
-                if(!isPracticeTask)child.GetComponent<MeshRenderer>().material = white;
+                if (!isPracticeTask) child.GetComponent<MeshRenderer>().material = white;
             }
 
             // Recursively set color to null for children's children

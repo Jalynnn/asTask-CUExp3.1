@@ -40,7 +40,8 @@ public class SceneDirector : MonoBehaviour
     {
         ExpA,
         ExpB,
-        Usability
+        Usability,
+        Germane
     }
 
     private void Awake()
@@ -66,18 +67,19 @@ public class SceneDirector : MonoBehaviour
         conditions = GetConditionFromCSV(participantID);
     }
     void OnSceneLoaded(Scene scene, LoadSceneMode mode)
-{
-    // Find your player and populate the data like e.g.
-    if(testing){
-        GameObject.FindWithTag("XRRig").GetComponent<ContinuousMovement>().enabled = true;
-       
-        GameObject menu = GameObject.FindWithTag("menu");
-        foreach (Transform child in menu.transform)
+    {
+        // Find your player and populate the data like e.g.
+        if (testing)
         {
-            child.gameObject.SetActive(true);
+            GameObject.FindWithTag("XRRig").GetComponent<ContinuousMovement>().enabled = true;
+
+            GameObject menu = GameObject.FindWithTag("menu");
+            foreach (Transform child in menu.transform)
+            {
+                child.gameObject.SetActive(true);
+            }
         }
-    }       
-}
+    }
     public string[] GetConditionFromCSV(int participantId)
     {
         // Load the appropriate CSV file based on the testing flag
@@ -121,12 +123,12 @@ public class SceneDirector : MonoBehaviour
             case 1:
                 if (string.Equals(condition.Trim(), "li", StringComparison.OrdinalIgnoreCase))
                 {
-                    SceneManager.LoadScene("A_LIn_LEx");
+                    SceneManager.LoadScene("A");
                 }
-                else if (string.Equals(condition.Trim(), "hi", StringComparison.OrdinalIgnoreCase))
-                {
-                    SceneManager.LoadScene("A_HiIn_LEx");
-                }
+                // else if (string.Equals(condition.Trim(), "hi", StringComparison.OrdinalIgnoreCase))
+                // {
+                //     SceneManager.LoadScene("A_HiIn_LEx");
+                // }
                 else
                 {
                     Debug.LogWarning("Unknown condition for shape 1: " + condition);
@@ -336,13 +338,15 @@ public class SceneDirector : MonoBehaviour
         }
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            LoadScenesBasedOnConditions();
+            Scene activeScene = SceneManager.GetActiveScene();
+            if (activeScene.name == "WaitingRoom")
+                LoadScenesBasedOnConditions();
         }
-         if (Input.GetKeyDown(KeyCode.T))
+        if (Input.GetKeyDown(KeyCode.T))
         {
             testing = !testing;
         }
-       
+
 
     }
 
@@ -538,6 +542,10 @@ public class SceneDirector : MonoBehaviour
         string sceneName = scene.name;
         string[] splitSceneName = sceneName.Split('_');
         return splitSceneName[0];
+    }
+    public string getCondition()
+    {
+        return conditions[shapeNumber];
     }
 
 
