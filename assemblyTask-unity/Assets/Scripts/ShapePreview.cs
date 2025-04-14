@@ -15,11 +15,15 @@ public class ShapePreview : MonoBehaviour
     public ExperimentLog log;
     public GameObject managerObj;
     public SceneDirector sceneDirector;
+    public invisInstructions instructions;
+
 
     // Start is called before the first frame update
     void Start()
     {
         if (log == null) managerObj = GameObject.FindWithTag("Manager");
+        instructions = GameObject.FindWithTag("SceneInstructions").GetComponent<invisInstructions>();
+
         if (managerObj.GetComponent<ExperimentLog>() != null) log = managerObj.GetComponent<ExperimentLog>();
         sceneDirector = managerObj.GetComponent<SceneDirector>();
         if (!considerColor && isPreview)
@@ -47,13 +51,14 @@ public class ShapePreview : MonoBehaviour
 
         if (isPreview)
             DisableAllColliders(this.transform);
-
+        if (isPreview && instructions.GermaneHighLoad)
+            StartCoroutine(disappear(0f));
         // if (!isPreview)
         //    DisableAllTextMeshPro(this.transform);
     }
     void OnEnable()
     {
-        if (isPreview && sceneDirector.getCondition() != "li")
+        if (isPreview && instructions.GermaneHighLoad)
             StartCoroutine(disappear(0f));
     }
 
@@ -108,7 +113,8 @@ public class ShapePreview : MonoBehaviour
     IEnumerator disappear(float time)
     {
         yield return new WaitForSeconds(time);
-        this.gameObject.transform.parent.gameObject.SetActive(false);//turns off the grandparent object
+        this.gameObject.transform.parent.gameObject.SetActive(false);
+        Debug.Log(this.gameObject.transform.parent.gameObject);//turns off the grandparent object
 
     }
 }

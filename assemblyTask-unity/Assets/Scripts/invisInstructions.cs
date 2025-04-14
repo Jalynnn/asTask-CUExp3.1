@@ -194,7 +194,7 @@ public class invisInstructions : MonoBehaviour
             yield return null;
         }
         // Reset the material back to the original
-       // if (GermaneHighLoad) renderer.material = originalMaterial;
+        // if (GermaneHighLoad) renderer.material = originalMaterial;
         SetActiveRecursively(obj, true);
     }
     public void FadeOutCorrectBar(float duration = 1f)
@@ -264,7 +264,7 @@ public class invisInstructions : MonoBehaviour
     }
     void SetActiveRecursively(GameObject obj, bool value)
     {
-// this turns on the numbers in the instruction bars when the user is building the shape.
+        // this turns on the numbers in the instruction bars when the user is building the shape.
         foreach (Transform child in obj.transform)
         {
             child.gameObject.SetActive(value);
@@ -328,7 +328,7 @@ public class invisInstructions : MonoBehaviour
     // This calls the next step in the instructions. It also handles the data logging for the instructions.
     public void nextStep()
     {
-        
+
         putRepeatText = false;
         //        Debug.Log("Next Step");
         if (GermaneHighLoad) instructionBars[currentStep].SetActive(false);
@@ -346,7 +346,7 @@ public class invisInstructions : MonoBehaviour
         }
         else
         {
-           
+
             // instructionPanel.text = "You have completed the instructions!";
             instructionPanel.gameObject.SetActive(false);
             dataLog("Trial", "complete");
@@ -358,7 +358,8 @@ public class invisInstructions : MonoBehaviour
             }
             else
             {
-               if(GermaneHighLoad) StartCoroutine(DisableShape());
+                if (GermaneHighLoad) StartCoroutine(DisableShape());
+                instructionPanel.gameObject.SetActive(false);
                 tlx.SetActive(true);
             }
         }

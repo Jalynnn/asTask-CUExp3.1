@@ -79,6 +79,13 @@ public class SceneDirector : MonoBehaviour
                 child.gameObject.SetActive(true);
             }
         }
+        string condition = conditions[shapeNumber];
+        if (string.Equals(condition.Trim(), "li", StringComparison.OrdinalIgnoreCase))
+        {
+            GameObject.FindWithTag("SceneInstructions").GetComponent<invisInstructions>().GermaneHighLoad = false;
+
+        }
+
     }
     public string[] GetConditionFromCSV(int participantId)
     {
@@ -121,18 +128,15 @@ public class SceneDirector : MonoBehaviour
         switch (shapeNumber)
         {
             case 1:
-                if (string.Equals(condition.Trim(), "li", StringComparison.OrdinalIgnoreCase))
-                {
-                    SceneManager.LoadScene("A");
-                }
-                // else if (string.Equals(condition.Trim(), "hi", StringComparison.OrdinalIgnoreCase))
+                // if (string.Equals(condition.Trim(), "li", StringComparison.OrdinalIgnoreCase))
                 // {
-                //     SceneManager.LoadScene("A_HiIn_LEx");
+
                 // }
-                else
-                {
-                    Debug.LogWarning("Unknown condition for shape 1: " + condition);
-                }
+                SceneManager.LoadScene("A");
+                // else
+                // {
+                //     SceneManager.LoadScene("A");
+                // }
                 break;
 
             case 2:
@@ -193,115 +197,115 @@ public class SceneDirector : MonoBehaviour
     private void Update()
     {
 
-        if (Input.GetKey(KeyCode.Alpha2))
-        {
-            if (Input.GetKeyDown(KeyCode.A))
-            {
-                LoadSceneByName("A_LIn_LEx");
-            }
-            else if (Input.GetKeyDown(KeyCode.B))
-            {
-                LoadSceneByName("B_LIn_LEx");
-            }
-            else if (Input.GetKeyDown(KeyCode.C))
-            {
-                LoadSceneByName("C_LIn_LEx");
-            }
-            else if (Input.GetKeyDown(KeyCode.D))
-            {
-                LoadSceneByName("D_LIn_LEx");
-            }
-            else if (Input.GetKeyDown(KeyCode.E))
-            {
-                LoadSceneByName("E_LIn_LEx");
-            }
-            else if (Input.GetKeyDown(KeyCode.F))
-            {
-                LoadSceneByName("F_LIn_LEx");
-            }
-            else if (Input.GetKeyDown(KeyCode.G))
-            {
-                LoadSceneByName("G_LIn_LEx");
-            }
-            else if (Input.GetKeyDown(KeyCode.H))
-            {
-                LoadSceneByName("H_LIn_LEx");
-            }
-        }
+        // if (Input.GetKey(KeyCode.Alpha2))
+        // {
+        //     if (Input.GetKeyDown(KeyCode.A))
+        //     {
+        //         LoadSceneByName("A_LIn_LEx");
+        //     }
+        //     else if (Input.GetKeyDown(KeyCode.B))
+        //     {
+        //         LoadSceneByName("B_LIn_LEx");
+        //     }
+        //     else if (Input.GetKeyDown(KeyCode.C))
+        //     {
+        //         LoadSceneByName("C_LIn_LEx");
+        //     }
+        //     else if (Input.GetKeyDown(KeyCode.D))
+        //     {
+        //         LoadSceneByName("D_LIn_LEx");
+        //     }
+        //     else if (Input.GetKeyDown(KeyCode.E))
+        //     {
+        //         LoadSceneByName("E_LIn_LEx");
+        //     }
+        //     else if (Input.GetKeyDown(KeyCode.F))
+        //     {
+        //         LoadSceneByName("F_LIn_LEx");
+        //     }
+        //     else if (Input.GetKeyDown(KeyCode.G))
+        //     {
+        //         LoadSceneByName("G_LIn_LEx");
+        //     }
+        //     else if (Input.GetKeyDown(KeyCode.H))
+        //     {
+        //         LoadSceneByName("H_LIn_LEx");
+        //     }
+        // }
 
-        if (Input.GetKey(KeyCode.Alpha3))
-        {
-            if (Input.GetKeyDown(KeyCode.A))
-            {
-                LoadSceneByName("A_HiIn_Lex");
-            }
-            else if (Input.GetKeyDown(KeyCode.B))
-            {
-                LoadSceneByName("B_HiIn_Lex");
-            }
-            else if (Input.GetKeyDown(KeyCode.C))
-            {
-                LoadSceneByName("C_HiIn_Lex");
-            }
-            else if (Input.GetKeyDown(KeyCode.D))
-            {
-                LoadSceneByName("D_HiIn_Lex");
-            }
-            else if (Input.GetKeyDown(KeyCode.E))
-            {
-                LoadSceneByName("E_HiIn_Lex");
-            }
-            else if (Input.GetKeyDown(KeyCode.F))
-            {
-                LoadSceneByName("F_HiIn_Lex");
-            }
-            else if (Input.GetKeyDown(KeyCode.G))
-            {
-                LoadSceneByName("G_HiIn_Lex");
-            }
-            else if (Input.GetKeyDown(KeyCode.H))
-            {
-                LoadSceneByName("H_HiIn_Lex");
-            }
-        }
+        // if (Input.GetKey(KeyCode.Alpha3))
+        // {
+        //     if (Input.GetKeyDown(KeyCode.A))
+        //     {
+        //         LoadSceneByName("A_HiIn_Lex");
+        //     }
+        //     else if (Input.GetKeyDown(KeyCode.B))
+        //     {
+        //         LoadSceneByName("B_HiIn_Lex");
+        //     }
+        //     else if (Input.GetKeyDown(KeyCode.C))
+        //     {
+        //         LoadSceneByName("C_HiIn_Lex");
+        //     }
+        //     else if (Input.GetKeyDown(KeyCode.D))
+        //     {
+        //         LoadSceneByName("D_HiIn_Lex");
+        //     }
+        //     else if (Input.GetKeyDown(KeyCode.E))
+        //     {
+        //         LoadSceneByName("E_HiIn_Lex");
+        //     }
+        //     else if (Input.GetKeyDown(KeyCode.F))
+        //     {
+        //         LoadSceneByName("F_HiIn_Lex");
+        //     }
+        //     else if (Input.GetKeyDown(KeyCode.G))
+        //     {
+        //         LoadSceneByName("G_HiIn_Lex");
+        //     }
+        //     else if (Input.GetKeyDown(KeyCode.H))
+        //     {
+        //         LoadSceneByName("H_HiIn_Lex");
+        //     }
+        // }
 
-        if (Input.GetKey(KeyCode.Alpha6))
-        {
-            if (Input.GetKeyDown(KeyCode.A))
-            {
-                LoadSceneByName("A_HiIn_HiEx");
-            }
-            else if (Input.GetKeyDown(KeyCode.B))
-            {
-                LoadSceneByName("B_HiIn_HiEx");
-            }
-            else if (Input.GetKeyDown(KeyCode.C))
-            {
-                LoadSceneByName("C_HiIn_HiEx");
-            }
-            else if (Input.GetKeyDown(KeyCode.D))
-            {
-                LoadSceneByName("D_HiIn_HiEx");
-            }
-            else if (Input.GetKeyDown(KeyCode.E))
-            {
-                LoadSceneByName("E_HiIn_HiEx");
-            }
-            else if (Input.GetKeyDown(KeyCode.F))
-            {
-                LoadSceneByName("F_HiIn_HiEx");
-            }
-            else if (Input.GetKeyDown(KeyCode.G))
-            {
-                LoadSceneByName("G_HiIn_HiEx");
-            }
-            else if (Input.GetKeyDown(KeyCode.H))
-            {
-                LoadSceneByName("H_HiIn_HiEx");
-            }
-        }
+        // if (Input.GetKey(KeyCode.Alpha6))
+        // {
+        //     if (Input.GetKeyDown(KeyCode.A))
+        //     {
+        //         LoadSceneByName("A_HiIn_HiEx");
+        //     }
+        //     else if (Input.GetKeyDown(KeyCode.B))
+        //     {
+        //         LoadSceneByName("B_HiIn_HiEx");
+        //     }
+        //     else if (Input.GetKeyDown(KeyCode.C))
+        //     {
+        //         LoadSceneByName("C_HiIn_HiEx");
+        //     }
+        //     else if (Input.GetKeyDown(KeyCode.D))
+        //     {
+        //         LoadSceneByName("D_HiIn_HiEx");
+        //     }
+        //     else if (Input.GetKeyDown(KeyCode.E))
+        //     {
+        //         LoadSceneByName("E_HiIn_HiEx");
+        //     }
+        //     else if (Input.GetKeyDown(KeyCode.F))
+        //     {
+        //         LoadSceneByName("F_HiIn_HiEx");
+        //     }
+        //     else if (Input.GetKeyDown(KeyCode.G))
+        //     {
+        //         LoadSceneByName("G_HiIn_HiEx");
+        //     }
+        //     else if (Input.GetKeyDown(KeyCode.H))
+        //     {
+        //         LoadSceneByName("H_HiIn_HiEx");
+        //     }
+        // }
 
-        if (Input.GetKey(KeyCode.Alpha4))
+        // if (Input.GetKey(KeyCode.Alpha4))
         {
             if (Input.GetKeyDown(KeyCode.A))
             {

@@ -1725,6 +1725,11 @@ PrefabInstance:
       propertyPath: considerColor
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 3816796743060703914, guid: 9b861ef3652b0b949a5ec5df7aa8cc69,
+        type: 3}
+      propertyPath: invisInstructions
+      value: 
+      objectReference: {fileID: 964607707403166138}
     - target: {fileID: 3899628522670457147, guid: 9b861ef3652b0b949a5ec5df7aa8cc69,
         type: 3}
       propertyPath: m_IsActive
@@ -2424,7 +2429,7 @@ MonoBehaviour:
   stepByStep: 1
   instructionPanel: {fileID: 0}
   stepPanel: {fileID: 0}
-  builtShape: {fileID: 58756186}
+  BuildingMenu: {fileID: 58756186}
   hands:
   - {fileID: 581672430}
   - {fileID: 581672429}
@@ -2435,7 +2440,7 @@ MonoBehaviour:
   fadingMaterial: {fileID: 2100000, guid: 722a88747d560ec4caeb43f2bdd4575a, type: 2}
   builtBars: []
   endButton: {fileID: 547383365}
-  GermaneHighLoad: 0
+  GermaneHighLoad: 1
 --- !u!1 &3954116125970588551 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 7065610097435842662, guid: 29bccb021597e414b8d4000b3a67e27b,

@@ -70,7 +70,7 @@ public class invisiBuild : MonoBehaviour
         {
             float distance = Vector3.Distance(transform.position, other.transform.position);
             lastTouchedBar = other.gameObject;
-            Debug.Log(lastTouchedBar.name);
+            //            Debug.Log(lastTouchedBar.name);
             if (CheckProperties(other))
             {
                 if (distance <= 0.06f)
@@ -356,7 +356,7 @@ public class invisiBuild : MonoBehaviour
             this.transform.rotation = originalRotation;
             inst.mistakes++;
             inst.SetTempText();
-            if (inst.currentStep == 6 && !inst.GermaneHighLoad) {  } else inst.BuildingMenu.SetActive(true);
+            if (inst.currentStep == 6 && !inst.GermaneHighLoad) { } else inst.BuildingMenu.SetActive(true);
             //inst.builtShape.transform.GetChild(1).gameObject.SetActive(true);
             inst.stepPanel.SetActive(false);
             manager.GetComponent<ExperimentLog>().AddData(this.gameObject.name, "Error", inst.currentStep.ToString(), errortype);
