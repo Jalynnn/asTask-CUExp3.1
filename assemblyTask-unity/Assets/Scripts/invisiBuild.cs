@@ -45,7 +45,7 @@ public class invisiBuild : MonoBehaviour
     string actualValue;
     AudioClip transferSound;
     bool shouldRepeat = false;
-
+    
 
     // Start is called before the first frame update
     void Start()
@@ -342,9 +342,7 @@ public class invisiBuild : MonoBehaviour
 
     IEnumerator WrongBar()
     {
-        Debug.Log("Wrong bar");
-        if (sceneDirector.experimentType != SceneDirector.ExperimentType.ExpA || !inst.GermaneHighLoad)
-        {
+       
             this.gameObject.GetComponent<XROffsetGrabInteractable>().interactionLayerMask = 0;
             inst.toggleHands(false);
             if (!crossSpawned)
@@ -356,7 +354,7 @@ public class invisiBuild : MonoBehaviour
             this.transform.rotation = originalRotation;
             inst.mistakes++;
             inst.SetTempText();
-            if (inst.currentStep == 6 && !inst.GermaneHighLoad) { } else inst.BuildingMenu.SetActive(true);
+            if (inst.currentStep == 6) { } else inst.BuildingMenu.SetActive(true);
             //inst.builtShape.transform.GetChild(1).gameObject.SetActive(true);
             inst.stepPanel.SetActive(false);
             manager.GetComponent<ExperimentLog>().AddData(this.gameObject.name, "Error", inst.currentStep.ToString(), errortype);
@@ -365,30 +363,30 @@ public class invisiBuild : MonoBehaviour
             this.gameObject.GetComponent<XROffsetGrabInteractable>().interactionLayerMask = 1;
             inst.cross = tempCross;
             crossSpawned = false;
-            inst.nextStep();
+            //inst.nextStep();
             StartCoroutine("resetCanBeBuilt");
-        }
-        else // experiment A here
-        {
-            this.gameObject.GetComponent<XROffsetGrabInteractable>().interactionLayerMask = 0;
-            inst.toggleHands(false);
-            inst.mistakes++;
-            inst.SetTempText();
-            inst.BuildingMenu.SetActive(true);
-            //inst.builtShape.transform.GetChild(1).gameObject.SetActive(true);
-            inst.stepPanel.SetActive(false);
-            manager.GetComponent<ExperimentLog>().AddData(this.gameObject.name, "Error", inst.currentStep.ToString(), errortype, expectedValue, actualValue);
-            if (!crossSpawned)
-            {
-                tempCross = Instantiate(cross, this.transform.position, Quaternion.identity);
-                crossSpawned = true;
-            }
-            yield return new WaitForSeconds(2f);
-            this.gameObject.GetComponent<XROffsetGrabInteractable>().interactionLayerMask = 1;
-            inst.cross = tempCross;
-            crossSpawned = false;
-            StartCoroutine("resetCanBeBuilt");
-        }
+        
+        // else // experiment A here
+        // {
+        //     this.gameObject.GetComponent<XROffsetGrabInteractable>().interactionLayerMask = 0;
+        //     inst.toggleHands(false);
+        //     inst.mistakes++;
+        //     inst.SetTempText();
+        //     inst.BuildingMenu.SetActive(true);
+        //     //inst.builtShape.transform.GetChild(1).gameObject.SetActive(true);
+        //     inst.stepPanel.SetActive(false);
+        //     manager.GetComponent<ExperimentLog>().AddData(this.gameObject.name, "Error", inst.currentStep.ToString(), errortype, expectedValue, actualValue);
+        //     if (!crossSpawned)
+        //     {
+        //         tempCross = Instantiate(cross, this.transform.position, Quaternion.identity);
+        //         crossSpawned = true;
+        //     }
+        //     yield return new WaitForSeconds(2f);
+        //     this.gameObject.GetComponent<XROffsetGrabInteractable>().interactionLayerMask = 1;
+        //     inst.cross = tempCross;
+        //     crossSpawned = false;
+        //     StartCoroutine("resetCanBeBuilt");
+        // }
     }
     public void SetIsGrabbed(bool value)
     {

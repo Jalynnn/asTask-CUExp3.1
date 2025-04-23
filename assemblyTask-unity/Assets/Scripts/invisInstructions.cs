@@ -194,7 +194,7 @@ public class invisInstructions : MonoBehaviour
             yield return null;
         }
         // Reset the material back to the original
-        // if (GermaneHighLoad) renderer.material = originalMaterial;
+        if (GermaneHighLoad) renderer.material = originalMaterial;
         SetActiveRecursively(obj, true);
     }
     public void FadeOutCorrectBar(float duration = 1f)
@@ -331,8 +331,7 @@ public class invisInstructions : MonoBehaviour
 
         putRepeatText = false;
         //        Debug.Log("Next Step");
-        if (GermaneHighLoad) instructionBars[currentStep].SetActive(false);
-        else instructionBars[currentStep].GetComponent<Collider>().enabled = false;
+        instructionBars[currentStep].GetComponent<Collider>().enabled = false;
 
         if (currentStep + 1 < instructionBars.Length)
         {
@@ -483,6 +482,10 @@ public class invisInstructions : MonoBehaviour
     {
         yield return new WaitForSeconds(2f);
         foreach (GameObject bar in builtBars)
+        {
+            bar.SetActive(false);
+        }
+        foreach (GameObject bar in instructionBars)
         {
             bar.SetActive(false);
         }
