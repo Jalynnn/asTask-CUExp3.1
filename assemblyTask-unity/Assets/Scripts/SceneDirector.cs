@@ -74,9 +74,16 @@ public class SceneDirector : MonoBehaviour
             GameObject.FindWithTag("XRRig").GetComponent<ContinuousMovement>().enabled = true;
 
             GameObject menu = GameObject.FindWithTag("menu");
-            foreach (Transform child in menu.transform)
+            if (menu != null && menu.transform.childCount > 0)
             {
-                child.gameObject.SetActive(true);
+                foreach (Transform child in menu.transform)
+                {
+                    child.gameObject.SetActive(true);
+                }
+            }
+            else
+            {
+                Debug.LogWarning("Menu has no children or is null.");
             }
         }
         string condition = conditions[shapeNumber];
@@ -128,60 +135,20 @@ public class SceneDirector : MonoBehaviour
         switch (shapeNumber)
         {
             case 1:
-                // if (string.Equals(condition.Trim(), "li", StringComparison.OrdinalIgnoreCase))
-                // {
 
-                // }
                 SceneManager.LoadScene("A");
-                // else
-                // {
-                //     SceneManager.LoadScene("A");
-                // }
                 break;
 
             case 2:
-                if (string.Equals(condition.Trim(), "li", StringComparison.OrdinalIgnoreCase))
-                {
-                    SceneManager.LoadScene("B_LIn_LEx");
-                }
-                else if (string.Equals(condition.Trim(), "hi", StringComparison.OrdinalIgnoreCase))
-                {
-                    SceneManager.LoadScene("B_HiIn_LEx");
-                }
-                else
-                {
-                    Debug.LogWarning("Unknown condition for shape 2: " + condition);
-                }
+                SceneManager.LoadScene("B");
                 break;
 
             case 3:
-                if (string.Equals(condition.Trim(), "li", StringComparison.OrdinalIgnoreCase))
-                {
-                    SceneManager.LoadScene("C_LIn_LEx");
-                }
-                else if (string.Equals(condition.Trim(), "hi", StringComparison.OrdinalIgnoreCase))
-                {
-                    SceneManager.LoadScene("C_HiIn_LEx");
-                }
-                else
-                {
-                    Debug.LogWarning("Unknown condition for shape 3: " + condition);
-                }
+                SceneManager.LoadScene("C");
                 break;
 
             case 4:
-                if (string.Equals(condition.Trim(), "li", StringComparison.OrdinalIgnoreCase))
-                {
-                    SceneManager.LoadScene("D_LIn_LEx");
-                }
-                else if (string.Equals(condition.Trim(), "hi", StringComparison.OrdinalIgnoreCase))
-                {
-                    SceneManager.LoadScene("D_HiIn_LEx");
-                }
-                else
-                {
-                    Debug.LogWarning("Unknown condition for shape 4: " + condition);
-                }
+                SceneManager.LoadScene("D");
                 break;
 
             default:
@@ -350,7 +317,26 @@ public class SceneDirector : MonoBehaviour
         {
             testing = !testing;
         }
-
+        if (Input.GetKeyDown(KeyCode.Alpha2))
+        {
+           shapeNumber= 2;
+            LoadScenesBasedOnConditions();
+        }
+        if (Input.GetKeyDown(KeyCode.Alpha3))
+        {
+            shapeNumber = 3;
+            LoadScenesBasedOnConditions();
+        }
+        if (Input.GetKeyDown(KeyCode.Alpha4))
+        {
+            shapeNumber = 4;
+            LoadScenesBasedOnConditions();
+        }
+         if (Input.GetKeyDown(KeyCode.Alpha1))
+        {
+            shapeNumber = 1;
+            LoadScenesBasedOnConditions();
+        }
 
     }
 

@@ -58,8 +58,8 @@ public class ShapePreview : MonoBehaviour
     }
     void OnEnable()
     {
-        if (isPreview && instructions.GermaneHighLoad)
-            StartCoroutine(disappear(0f));
+        // if (isPreview && instructions.GermaneHighLoad && sceneDirector.trialNumber != 8)
+        //     StartCoroutine(disappear(0f));
     }
 
     // Update is called once per frame

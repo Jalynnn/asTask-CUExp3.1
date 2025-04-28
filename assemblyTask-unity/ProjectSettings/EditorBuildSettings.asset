@@ -24,27 +24,30 @@ EditorBuildSettings:
     path: Assets/Scenes/NewScenes/ShapeA/A.unity
     guid: d4530a4a00c9fd6438f6acb105e4d98f
   - enabled: 1
+    path: Assets/Scenes/NewScenes/ShapeB/B.unity
+    guid: 85b150a7751986143b7898bfb3f8e55c
+  - enabled: 0
     path: Assets/Scenes/NewScenes/ShapeA/A_LIn_LEx.unity
     guid: 73e8119d200e56f41a41b6ed63e85437
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/NewScenes/ShapeA/A_HiIn_LEx.unity
     guid: e39670aa60e215e499d45578d3a43245
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/NewScenes/ShapeB/B_LIn_LEx.unity
     guid: f81778e59afeac84da4ac08c3c4d1f56
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/NewScenes/ShapeB/B_HiIn_LEx.unity
     guid: f83dda1c7a49d964c9304d588d5a532d
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/NewScenes/ShapeC/C_LIn_LEx.unity
     guid: 4aee1f713cfbb7f4cbc2833bfe59e0a6
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/NewScenes/ShapeC/C_HiIn_LEx.unity
     guid: 179021720cd4f744bb86f2cf0f6fa456
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/NewScenes/ShapeD/D_LIn_LEx.unity
     guid: 5d16bfa436ee36e4186a981f0c2cfbd3
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/NewScenes/ShapeD/D_HiIn_LEx.unity
     guid: f95f82da45a455e4a853cda138b5f759
   - enabled: 1

@@ -21,7 +21,7 @@ public class invisInstructions : MonoBehaviour
     public TMP_Text instructionPanel;
     public GameObject stepPanel;
     public GameObject BuildingMenu;
-    [HideInInspector] public GameObject[] hands;
+    public GameObject[] hands;
     public bool isAdaptive;
     public GameObject tlx;
     string tempText;
@@ -36,7 +36,7 @@ public class invisInstructions : MonoBehaviour
     public GameObject endButton;
     public bool GermaneHighLoad;
 
-    bool TLXWorkloadAdaptation = false;
+    public bool TLXWorkloadAdaptation = false;
 
     // Start is called before the first frame update
     void Start()
@@ -82,10 +82,10 @@ public class invisInstructions : MonoBehaviour
         if (sceneDirector.trialNumber == 8)
         {
             instructionPanel.text = "Please perform Step 1";
-            if (BuildingMenu.transform.parent != null)
-            {
-                BuildingMenu.transform.parent.gameObject.SetActive(false);
-            }
+            // if (BuildingMenu.transform.parent != null)
+            // {
+            //     BuildingMenu.transform.parent.gameObject.SetActive(false);
+            // }
 
         }
         else
@@ -142,7 +142,6 @@ public class invisInstructions : MonoBehaviour
             DisableMeshRenderersRecursive(BuildingMenu.transform); // hides shape to be built in transfer trial
         }
         SetScaffold();
-
         StartCoroutine(Wait(1));
     }
 
@@ -345,22 +344,20 @@ public class invisInstructions : MonoBehaviour
         }
         else
         {
-
             // instructionPanel.text = "You have completed the instructions!";
             instructionPanel.gameObject.SetActive(false);
             dataLog("Trial", "complete");
             WideDataLog();
             toggleHands(false);
-            if (sceneDirector.trialNumber == 8)
+            if (GermaneHighLoad) StartCoroutine(DisableShape());
+            if (sceneDirector.trialNumber == 8 || sceneDirector.trialNumber == 6)
             {
-                endButton.SetActive(true);
-            }
-            else
-            {
-                if (GermaneHighLoad) StartCoroutine(DisableShape());
-                instructionPanel.gameObject.SetActive(false);
                 tlx.SetActive(true);
             }
+            else
+                endButton.SetActive(true);
+
+
         }
     }
 
@@ -414,42 +411,42 @@ public class invisInstructions : MonoBehaviour
                 sceneDirector.StepDisplay[i] = false;
             }
         }
-
-        else if (TLXWorkloadAdaptation && sceneDirector.trialNumber >= 3)
+        if (GermaneHighLoad && sceneDirector.trialNumber >= 3)
         {
-            if (TLXWorkloadAdaptation)
+            int s = FindFirstFalseInStepDisplay();
+            if (s >= 1)
             {
-                if (sceneDirector.tlxDifference > 2)
-                {
-                    int s = FindFirstFalseInStepDisplay();
-                    if (s >= 2)
-                    {
-                        sceneDirector.StepDisplay[s - 1] = false;
-                        sceneDirector.StepDisplay[s - 2] = false;
-                        sceneDirector.scaffoldsRemoved += 2;
-                    }
-                }
-
-                else if (sceneDirector.tlxDifference <= 2 && sceneDirector.tlxDifference >= -2 && sceneDirector.prevMentalTLX <= 19)
-                {
-                    int s = FindFirstFalseInStepDisplay();
-                    if (s >= 1)
-                    {
-                        sceneDirector.StepDisplay[s - 1] = false;
-                        sceneDirector.scaffoldsRemoved++;
-                    }
-                }
-            }
-            else if (GermaneHighLoad)
-            {
-                int s = FindFirstFalseInStepDisplay();
-                if (s >= 1)
-                {
-                    sceneDirector.StepDisplay[s - 1] = false;
-                    sceneDirector.scaffoldsRemoved++;
-                }
+                sceneDirector.StepDisplay[s - 1] = false;
+                sceneDirector.scaffoldsRemoved++;
             }
         }
+        // else if (TLXWorkloadAdaptation && sceneDirector.trialNumber >= 3)
+        // {
+        //     if (TLXWorkloadAdaptation)
+        //     {
+        //         if (sceneDirector.tlxDifference > 2)
+        //         {
+        //             int s = FindFirstFalseInStepDisplay();
+        //             if (s >= 2)
+        //             {
+        //                 sceneDirector.StepDisplay[s - 1] = false;
+        //                 sceneDirector.StepDisplay[s - 2] = false;
+        //                 sceneDirector.scaffoldsRemoved += 2;
+        //             }
+        //         }
+
+        //         else if (sceneDirector.tlxDifference <= 2 && sceneDirector.tlxDifference >= -2 && sceneDirector.prevMentalTLX <= 19)
+        //         {
+        //             int s = FindFirstFalseInStepDisplay();
+        //             if (s >= 1)
+        //             {
+        //                 sceneDirector.StepDisplay[s - 1] = false;
+        //                 sceneDirector.scaffoldsRemoved++;
+        //             }
+        //         }
+        //     }
+        //     else
+        // }
     }
     public int FindFirstFalseInStepDisplay()
     {
