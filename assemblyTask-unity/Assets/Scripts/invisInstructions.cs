@@ -79,14 +79,13 @@ public class invisInstructions : MonoBehaviour
         }
         toggleHands(false);
 
-        if (sceneDirector.trialNumber == 8||sceneDirector.trialNumber == 6)
+        if (sceneDirector.trialNumber == 8)
         {
             instructionPanel.text = "Please perform Step 1";
-            // if (BuildingMenu.transform.parent != null)
-            // {
-            //     BuildingMenu.transform.parent.gameObject.SetActive(false);
-            // }
-
+        }
+        else if (sceneDirector.trialNumber == 6&&GermaneHighLoad)
+        {
+            instructionPanel.text = "Please perform Step 1";
         }
         else
         {
