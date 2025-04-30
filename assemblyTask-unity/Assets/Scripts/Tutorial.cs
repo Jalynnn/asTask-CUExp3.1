@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using UnityEngine.Video;
 
 public class Tutorial : MonoBehaviour
 {
@@ -8,7 +10,9 @@ public class Tutorial : MonoBehaviour
     public AudioClip tutorialAudioEXPB;
     public GameObject nextButton;
     bool tutoStarted = false;
-   public GameObject sceneDirector;
+    public GameObject sceneDirector;
+    public VideoPlayer videoPlayer;
+    public GameObject TextBox;
     // Start is called before the first frame update
     void Start()
     {
@@ -19,6 +23,7 @@ public class Tutorial : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Space))
         {
+            TextBox.SetActive(false);
             if (sceneDirector.GetComponent<SceneDirector>().experimentType == SceneDirector.ExperimentType.ExpA)
             {
                 StartCoroutine(StartTutorial("A"));
@@ -37,24 +42,13 @@ public class Tutorial : MonoBehaviour
 
     IEnumerator StartTutorial(string type)
     {
-
         if (!tutoStarted)
         {
-            if (type == "A")
-            {
-                AudioSource.PlayClipAtPoint(tutorialAudioEXPA, transform.position);
-                tutoStarted = true;
-                yield return new WaitForSeconds(tutorialAudioEXPA.length);
-                nextButton.SetActive(true);
-            }
-            if (type == "B")
-            {
-                AudioSource.PlayClipAtPoint(tutorialAudioEXPB, transform.position);
-                tutoStarted = true;
-                yield return new WaitForSeconds(tutorialAudioEXPB.length);
-                nextButton.SetActive(true);
-            }
-
+            AudioSource audioSource = videoPlayer.GetComponent<AudioSource>();
+            videoPlayer.Play();
+            tutoStarted = true;
+            yield return new WaitForSeconds((float)videoPlayer.clip.length);
+            nextButton.SetActive(true);
 
         }
 
