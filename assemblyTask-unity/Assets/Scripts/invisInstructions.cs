@@ -83,7 +83,7 @@ public class invisInstructions : MonoBehaviour
         {
             instructionPanel.text = "Please perform Step 1";
         }
-        else if (sceneDirector.trialNumber == 6&&GermaneHighLoad)
+        else if (sceneDirector.trialNumber == 6 && GermaneHighLoad)
         {
             instructionPanel.text = "Please perform Step 1";
         }
@@ -138,8 +138,9 @@ public class invisInstructions : MonoBehaviour
 
         if (sceneDirector.trialNumber == 8)
         {
-            DisableMeshRenderersRecursive(BuildingMenu.transform); // hides shape to be built in transfer trial
+            DisableMeshRenderersRecursive(BuildingMenu.transform.parent); // hides shape to be built in transfer trial
         }
+
         SetScaffold();
         StartCoroutine(Wait(1));
     }
