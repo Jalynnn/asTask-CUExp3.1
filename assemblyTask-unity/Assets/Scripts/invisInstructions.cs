@@ -79,7 +79,7 @@ public class invisInstructions : MonoBehaviour
         }
         toggleHands(false);
 
-        if (sceneDirector.trialNumber == 8)
+        if (sceneDirector.trialNumber == 8||sceneDirector.trialNumber == 6)
         {
             instructionPanel.text = "Please perform Step 1";
             // if (BuildingMenu.transform.parent != null)

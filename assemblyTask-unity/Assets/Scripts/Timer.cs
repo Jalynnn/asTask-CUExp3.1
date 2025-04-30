@@ -31,43 +31,29 @@ public class Timer : MonoBehaviour
     }
     IEnumerator updateBar()
     {
-        if(dropdown == Options.Shape)
+        if (dropdown == Options.Shape)
         {
-           progress.text = waitingTime.ToString() + " s";
+            progress.text = waitingTime.ToString() + " s";
         }
-        
+
         managerObj = GameObject.FindWithTag("Manager");
         sceneDirector = managerObj.GetComponent<SceneDirector>();
 
         if (sceneDirector.firstWait && dropdown == Options.WaitingRoom)
         {
-            progress.text = "Please talk to the experimenter.";
+            progress.text = "Please talk to the experimenter to start the experiment.";
             sceneDirector.firstWait = false;
             yield break;
         }
 
-        while (waitingTime >= 0)
-        {
-
-            yield return new WaitForSeconds(1f);
-            waitingTime--;
-            if (dropdown == Options.WaitingRoom)
-            {
-                progress.text = "Please wait for " + waitingTime.ToString() + " seconds";
-            }
-            else if (dropdown == Options.Shape)
-            {
-                progress.text = waitingTime.ToString() + " s";
-            }
-        }
 
         if (dropdown == Options.WaitingRoom)
         {
-            progress.text = "Please talk to the experimenter.";
+            progress.text = "Please talk to the experimenter to start the next shape.";
         }
         else if (dropdown == Options.Shape)
         {
-            
+
             progress.enabled = false;
         }
     }
