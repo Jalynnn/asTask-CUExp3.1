@@ -260,7 +260,7 @@ public class ExperimentLog : MonoBehaviour
         UnityEngine.Debug.Log("Jalynn: This is the action: " + action);
         UnityEngine.Debug.Log("Jalynn: This is the errorType: " + errorType);
 
-        switch (category,  , errorType)
+        switch (category,  action, errorType)
         {
             // case("M_TLX", "n/a", "n/a"):
             //     nominal = 8;
