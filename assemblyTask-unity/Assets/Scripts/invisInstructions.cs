@@ -35,6 +35,7 @@ public class invisInstructions : MonoBehaviour
     GameObject nextArrow;
     public GameObject endButton;
     public bool GermaneHighLoad;
+    public GameObject preview;
 
     public bool TLXWorkloadAdaptation = false;
 
@@ -52,10 +53,15 @@ public class invisInstructions : MonoBehaviour
         nextArrow = GameObject.FindWithTag("nextArrow");
         repeatArrow.SetActive(false);
         nextArrow.SetActive(false);
-        if (sceneDirector.getCondition() == "li") GermaneHighLoad = false;
-        else GermaneHighLoad = true;
-
-
+        if (sceneDirector.getCondition() == "li")
+        {
+            GermaneHighLoad = false;
+            preview.SetActive(true);
+        }
+        else
+        {
+            GermaneHighLoad = true;
+        }
         if (instructionsAreSeperated) // This causes the instructions to be set to high extraneous load. In this case it decreases font size and changes the location to be offset. Also changes font to different asset with poor contrast. This is done to make the instructions harder to read.
         {
             // Gets the two Quads from the stepPanel and sets the first one to be inactive and the second one to be active. This is done to change the background of the wordy instructions.

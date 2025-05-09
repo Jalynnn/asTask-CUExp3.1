@@ -23,9 +23,14 @@ public class ShapePreview : MonoBehaviour
     {
         if (log == null) managerObj = GameObject.FindWithTag("Manager");
         instructions = GameObject.FindWithTag("SceneInstructions").GetComponent<invisInstructions>();
+       
+        if (managerObj.GetComponent<ExperimentLog>() != null)
+            log = managerObj.GetComponent<ExperimentLog>();
 
-        if (managerObj.GetComponent<ExperimentLog>() != null) log = managerObj.GetComponent<ExperimentLog>();
         sceneDirector = managerObj.GetComponent<SceneDirector>();
+
+
+
         if (!considerColor && isPreview)
         {
             foreach (Transform child in transform)
@@ -51,8 +56,8 @@ public class ShapePreview : MonoBehaviour
 
         if (isPreview)
             DisableAllColliders(this.transform);
-        if (isPreview && instructions.GermaneHighLoad)
-            StartCoroutine(disappear(0f));
+
+        //StartCoroutine(disappear(0f));
         // if (!isPreview)
         //    DisableAllTextMeshPro(this.transform);
     }
