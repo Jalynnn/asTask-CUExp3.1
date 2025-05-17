@@ -369,7 +369,7 @@ PrefabInstance:
     - target: {fileID: 6910204350674015626, guid: 29bccb021597e414b8d4000b3a67e27b,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8287602429359275935, guid: 29bccb021597e414b8d4000b3a67e27b,
         type: 3}
@@ -1965,6 +1965,12 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 1874607258}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1988896236 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6910204350674015626, guid: 29bccb021597e414b8d4000b3a67e27b,
+    type: 3}
+  m_PrefabInstance: {fileID: 58756181}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &964607707403166136
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2134,6 +2140,8 @@ MonoBehaviour:
   builtBars: []
   endButton: {fileID: 547383365}
   GermaneHighLoad: 0
+  preview: {fileID: 1988896236}
+  TLXWorkloadAdaptation: 0
 --- !u!1 &3954116125970588551 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 7065610097435842662, guid: 29bccb021597e414b8d4000b3a67e27b,
